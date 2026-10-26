@@ -1,6 +1,42 @@
 # Diagrama de arquitectura y flujo de CEMEC
 
-## Portada del repositorio · 26 de octubre de 2026
+## Arquitectura técnica · portada del repositorio
+
+[![Arquitectura técnica de CEMEC](cemec-arquitectura-tecnica.png)](cemec-arquitectura-tecnica.svg)
+
+- [PNG de arquitectura](cemec-arquitectura-tecnica.png): 2250 × 1762 píxeles para la portada y presentaciones.
+- [SVG técnico editable](cemec-arquitectura-tecnica.svg): texto seleccionable y descripción accesible.
+- [Generador reproducible](../../scripts/build_architecture_diagram.py): Python estándar; PNG exportado con ImageMagick.
+
+Representa la implementación revisada el 26 de octubre de 2026, con tres límites de ejecución: navegador, equipo o servidor CEMEC y servicios externos. Los bloques del servidor son responsabilidades de dos procesos locales; no representan microservicios desplegados por separado.
+
+### Componentes y conexiones
+
+| Componente | Tecnología y responsabilidad | Referencia |
+| --- | --- | --- |
+| Cliente web | Compilación original React, presentación JavaScript/CSS en `ui/`, mapa MapLibre GL JS/WebGL; filtros, gráficos y comparación. | `ui/cemec-view.js`, `ui/cemec-ui.css`, `scripts/frontend_patch.cjs` |
+| Servidor web | Node.js 22, módulos nativos HTTP/FS: HTML, JS, CSS, recursos, rangos HTTP para PMTiles y proxy del backend. | `serve.js` |
+| API interna | Python 3.12, `ThreadingHTTPServer`, respuestas JSON y archivos; tareas en `ThreadPoolExecutor`, consulta de progreso por polling y control de acceso interno por token. | `scripts/firms_backend.py`, `scripts/start.py` |
+| Integración de detecciones | FIRMS Area API/CSV y EUMETSAT/EUMDAC; validación, normalización, deduplicación y cruces espaciales Shapely. | `scripts/firms_backend.py`, `scripts/eumetsat_client.py` |
+| Imágenes de contexto | CDSE OAuth2, Catalog y Process API; preparación de OLCI y mosaicos trimestrales Sentinel-2, caché y presupuestos. | `scripts/olci_service.py`, `scripts/mosaic_service.py` |
+| Persistencia | Archivos JSON/GeoJSON/Parquet y recursos PMTiles; snapshots versionados, estado activo, manifiestos de procedencia, imágenes, tareas y consumo. | `cemec-sitio-estatico/`, `runtime/` |
+| Exportación | Reporte analítico, CSV/GeoJSON y GeoPDF beta en navegador; imágenes y metadatos obtenidos del backend para su descarga. | Compilación original, `ui/geopdf.js`, `ui/olci-layer.js` |
+| Configuración | `config.yaml` y `.env` local, servicios iniciados desde el entorno Conda dedicado. | `environment.yml`, `scripts/start.py` |
+
+**Persistencia no equivale a un servidor de base de datos:** actualmente no se utiliza PostgreSQL/PostGIS, SQLite ni una cola distribuida. La integración construye el snapshot antes de activar el nuevo catálogo; el histórico original permanece disponible. Las cachés y snapshots operativos no se incluyen en Git.
+
+Node reenvía `/api/…`, `/live-data/…` y `/data/catalog.json` a Python por `127.0.0.1`, añadiendo un token interno efímero. Las demás rutas autorizadas se sirven desde archivos. Este token controla la comunicación entre procesos; no representa cuentas o roles de usuarios. Las claves de los proveedores permanecen en el servidor y no están en el diagrama ni en el repositorio.
+
+La ruta Esri es distinta: el navegador solicita directamente las teselas al activar el fondo. Las solicitudes de imágenes CDSE pasan por Python. Las detecciones FIRMS/EUMETSAT se sincronizan por acción del operador; el diagrama no representa actualizaciones periódicas automáticas. El portal SIG beta se mantiene fuera de este esquema centrado en monitoreo.
+
+Para regenerar desde la raíz:
+
+```bash
+python scripts/build_architecture_diagram.py
+convert -background white -density 120 docs/diagramas/cemec-arquitectura-tecnica.svg docs/diagramas/cemec-arquitectura-tecnica.png
+```
+
+## Vista funcional complementaria · 26 de octubre de 2026
 
 [![Síntesis de la plataforma CEMEC](cemec-plataforma-flujo.png)](cemec-plataforma-flujo.svg)
 

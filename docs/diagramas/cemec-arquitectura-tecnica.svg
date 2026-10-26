@@ -1,0 +1,160 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1410" viewBox="0 0 1800 1410" role="img" aria-labelledby="title desc">
+<title id="title">Arquitectura técnica de CEMEC</title>
+<desc id="desc">El navegador ejecuta React y MapLibre. Node.js sirve la interfaz y los archivos y reenvía las solicitudes API a Python por loopback con un token interno. Python integra FIRMS, EUMETSAT y Copernicus y mantiene un catálogo de archivos versionados y cachés. Esri sirve teselas directamente al navegador. No hay base de datos SQL ni cola distribuida.</desc>
+<rect width="1800" height="1410" fill="#f5f8fb"/>
+<path d="M0 0H1800V175H0Z" fill="#173449"/>
+<path d="M1510 0V175M1550 0V175M1590 0V175M1630 0V175M1670 0V175M1710 0V175M1750 0V175M1490 35H1800M1490 75H1800M1490 115H1800M1490 155H1800" stroke="#315569" stroke-width="1"/>
+
+<text x="55" y="66" font-family="DejaVu Sans,Arial,sans-serif" font-size="42" font-weight="700" fill="#fff">CEMEC</text>
+<text x="55" y="115" font-family="DejaVu Sans,Arial,sans-serif" font-size="34" font-weight="600" fill="#fff">Arquitectura técnica de la plataforma</text>
+<text x="55" y="151" font-family="DejaVu Sans,Arial,sans-serif" font-size="22" font-weight="400" fill="#c7dae7">Interfaz web, servicios de integración, APIs y persistencia geoespacial</text>
+<rect x="50" y="225" width="420" height="1025" rx="18" fill="#eef3fa" stroke="#c8d7e8" stroke-width="1.5"/>
+<rect x="530" y="225" width="780" height="1025" rx="18" fill="#eef7f5" stroke="#b8d5ce" stroke-width="1.5"/>
+<rect x="1370" y="225" width="380" height="1025" rx="18" fill="#f4f0fa" stroke="#d7cce7" stroke-width="1.5"/>
+<text x="75" y="207" font-family="DejaVu Sans,Arial,sans-serif" font-size="24" font-weight="700" fill="#2d5fb1">Cliente</text>
+<text x="555" y="207" font-family="DejaVu Sans,Arial,sans-serif" font-size="24" font-weight="700" fill="#137b7a">Equipo o servidor CEMEC</text>
+<text x="1395" y="207" font-family="DejaVu Sans,Arial,sans-serif" font-size="24" font-weight="700" fill="#775bb0">Servicios externos</text>
+<rect x="80" y="280" width="360" height="470" rx="12" fill="#fff" stroke="#b6c8dc" stroke-width="1.5"/>
+<rect x="80" y="280" width="360" height="43" rx="12" fill="#dfe8f3" stroke="#b6c8dc" stroke-width="1.5"/>
+<circle cx="101" cy="301" r="4" fill="#7e99b4"/>
+<circle cx="118" cy="301" r="4" fill="#7e99b4"/>
+<circle cx="135" cy="301" r="4" fill="#7e99b4"/>
+<text x="155" y="307" font-family="DejaVu Sans Mono,monospace" font-size="18" font-weight="400" fill="#52697a">localhost:8090</text>
+<text x="102" y="364" font-family="DejaVu Sans,Arial,sans-serif" font-size="29" font-weight="700" fill="#173449">Interfaz web</text>
+<text x="102" y="398" font-family="DejaVu Sans,Arial,sans-serif" font-size="22" font-weight="400" fill="#173449">React + JavaScript + CSS</text>
+<text x="102" y="430" font-family="DejaVu Sans,Arial,sans-serif" font-size="22" font-weight="600" fill="#2d5fb1">MapLibre GL JS · WebGL</text>
+<rect x="103" y="453" width="314" height="125" rx="5" fill="#eaf2f0" stroke="#d1dfd8" stroke-width="1.5"/>
+<path d="M105 550L160 491L208 530L265 473L317 527L415 482" fill="none" stroke="#b2c9bd" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M222 454C190 480 281 518 247 577" fill="none" stroke="#a3bfd7" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="155" cy="513" r="5" fill="#da7941"/>
+<circle cx="181" cy="536" r="5" fill="#da7941"/>
+<circle cx="301" cy="491" r="5" fill="#da7941"/>
+<circle cx="325" cy="518" r="5" fill="#da7941"/>
+<circle cx="351" cy="507" r="5" fill="#da7941"/>
+<text x="102" y="615" font-family="DejaVu Sans,Arial,sans-serif" font-size="20" font-weight="400" fill="#173449">Filtros territoriales y temporales</text>
+<text x="102" y="647" font-family="DejaVu Sans,Arial,sans-serif" font-size="22" font-weight="400" fill="#173449">Mapa, gráficas y tabla</text>
+<text x="102" y="679" font-family="DejaVu Sans,Arial,sans-serif" font-size="21" font-weight="400" fill="#173449">Comparación entre sensores</text>
+<text x="102" y="721" font-family="DejaVu Sans,Arial,sans-serif" font-size="18" font-weight="400" fill="#52697a">Compilación original + capa ui/</text>
+<rect x="560" y="280" width="300" height="250" rx="12" fill="#fff" stroke="#a5cbbb" stroke-width="1.5"/>
+<rect x="580" y="301" width="75" height="28" rx="5" fill="#e0f0ea" stroke="#e0f0ea" stroke-width="1.5"/>
+<text x="589" y="321" font-family="DejaVu Sans,Arial,sans-serif" font-size="17" font-weight="700" fill="#137b7a">HTTP</text>
+<text x="582" y="369" font-family="DejaVu Sans,Arial,sans-serif" font-size="28" font-weight="700" fill="#173449">Servidor web</text>
+<text x="582" y="405" font-family="DejaVu Sans,Arial,sans-serif" font-size="24" font-weight="600" fill="#137b7a">Node.js 22</text>
+<text x="582" y="445" font-family="DejaVu Sans Mono,monospace" font-size="21" font-weight="400" fill="#52697a">serve.js</text>
+<text x="582" y="482" font-family="DejaVu Sans,Arial,sans-serif" font-size="21" font-weight="400" fill="#173449">Archivos + proxy API</text>
+<text x="582" y="511" font-family="DejaVu Sans,Arial,sans-serif" font-size="18" font-weight="400" fill="#52697a">HTTP Range para PMTiles</text>
+<path d="M440 373H560" fill="none" stroke="#2d5fb1" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<polygon points="560,373 549,367 549,379" fill="#2d5fb1"/>
+<polygon points="440,373 451,367 451,379" fill="#2d5fb1"/>
+<text x="455" y="350" font-family="DejaVu Sans,Arial,sans-serif" font-size="18" font-weight="600" fill="#2d5fb1">HTTP</text>
+<path d="M860 380H900" fill="none" stroke="#137b7a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<polygon points="900,380 889,374 889,386" fill="#137b7a"/>
+<polygon points="860,380 871,374 871,386" fill="#137b7a"/>
+<text x="560" y="575" font-family="DejaVu Sans Mono,monospace" font-size="18" font-weight="400" fill="#137b7a">/api/… · /live-data/…</text>
+<text x="560" y="604" font-family="DejaVu Sans Mono,monospace" font-size="18" font-weight="400" fill="#137b7a">/data/catalog.json</text>
+<rect x="900" y="280" width="380" height="470" rx="12" fill="#fff" stroke="#a5cbbb" stroke-width="1.5"/>
+<text x="924" y="323" font-family="DejaVu Sans,Arial,sans-serif" font-size="28" font-weight="700" fill="#173449">Backend de datos</text>
+<text x="924" y="358" font-family="DejaVu Sans,Arial,sans-serif" font-size="24" font-weight="600" fill="#137b7a">Python 3.12</text>
+<text x="924" y="393" font-family="DejaVu Sans Mono,monospace" font-size="20" font-weight="400" fill="#52697a">ThreadingHTTPServer</text>
+<path d="M924 416H1256" fill="none" stroke="#d7e1e9" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="924" y="452" font-family="DejaVu Sans,Arial,sans-serif" font-size="21" font-weight="400" fill="#173449">API HTTP + respuestas JSON</text>
+<text x="924" y="487" font-family="DejaVu Sans,Arial,sans-serif" font-size="21" font-weight="400" fill="#173449">Tareas en hilos y polling</text>
+<text x="924" y="522" font-family="DejaVu Sans,Arial,sans-serif" font-size="21" font-weight="400" fill="#173449">Validación y deduplicación</text>
+<text x="924" y="557" font-family="DejaVu Sans,Arial,sans-serif" font-size="21" font-weight="400" fill="#173449">Cruces espaciales · Shapely</text>
+<text x="924" y="592" font-family="DejaVu Sans,Arial,sans-serif" font-size="21" font-weight="400" fill="#173449">Publicación de snapshots</text>
+<path d="M924 612H1256" fill="none" stroke="#d7e1e9" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="924" y="647" font-family="DejaVu Sans,Arial,sans-serif" font-size="20" font-weight="400" fill="#173449">Imágenes: caché y presupuestos</text>
+<text x="924" y="679" font-family="DejaVu Sans,Arial,sans-serif" font-size="20" font-weight="400" fill="#137b7a">NumPy · PyArrow · EUMDAC</text>
+<text x="924" y="723" font-family="DejaVu Sans,Arial,sans-serif" font-size="19" font-weight="400" fill="#52697a">Loopback + token interno</text>
+<rect x="1395" y="280" width="330" height="147" rx="12" fill="#fff" stroke="#d7cce7" stroke-width="1.5"/>
+<rect x="1395" y="297" width="4" height="113" fill="#137b7a"/>
+<text x="1414" y="318" font-family="DejaVu Sans,Arial,sans-serif" font-size="26" font-weight="700" fill="#173449">NASA FIRMS</text>
+<text x="1414" y="357" font-family="DejaVu Sans,Arial,sans-serif" font-size="22" font-weight="400" fill="#52697a">Area API → CSV</text>
+<text x="1414" y="387" font-family="DejaVu Sans,Arial,sans-serif" font-size="19" font-weight="400" fill="#52697a">VIIRS / MODIS · MAP_KEY</text>
+<rect x="1395" y="465" width="330" height="168" rx="12" fill="#fff" stroke="#d7cce7" stroke-width="1.5"/>
+<rect x="1395" y="482" width="4" height="134" fill="#137b7a"/>
+<text x="1414" y="503" font-family="DejaVu Sans,Arial,sans-serif" font-size="26" font-weight="700" fill="#173449">EUMETSAT</text>
+<text x="1414" y="542" font-family="DejaVu Sans,Arial,sans-serif" font-size="21" font-weight="400" fill="#52697a">Data Store · EUMDAC</text>
+<text x="1414" y="572" font-family="DejaVu Sans,Arial,sans-serif" font-size="20" font-weight="400" fill="#52697a">Sentinel-3 SLSTR · FRP</text>
+<text x="1414" y="602" font-family="DejaVu Sans,Arial,sans-serif" font-size="18" font-weight="400" fill="#52697a">OAuth / client credentials</text>
+<rect x="1395" y="680" width="330" height="168" rx="12" fill="#fff" stroke="#d7cce7" stroke-width="1.5"/>
+<rect x="1395" y="697" width="4" height="134" fill="#775bb0"/>
+<text x="1414" y="718" font-family="DejaVu Sans,Arial,sans-serif" font-size="23" font-weight="700" fill="#173449">Copernicus Data Space</text>
+<text x="1414" y="757" font-family="DejaVu Sans,Arial,sans-serif" font-size="20" font-weight="400" fill="#52697a">Catalog + Process API</text>
+<text x="1414" y="787" font-family="DejaVu Sans,Arial,sans-serif" font-size="18" font-weight="400" fill="#52697a">OLCI / mosaicos Sentinel-2</text>
+<text x="1414" y="817" font-family="DejaVu Sans,Arial,sans-serif" font-size="18" font-weight="400" fill="#52697a">OAuth2 · client credentials</text>
+<path d="M1280 439H1340V355H1395" fill="none" stroke="#137b7a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<polygon points="1395,355 1384,349 1384,361" fill="#137b7a"/>
+<polygon points="1280,439 1291,433 1291,445" fill="#137b7a"/>
+<path d="M1280 487H1320V548H1395" fill="none" stroke="#137b7a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<polygon points="1395,548 1384,542 1384,554" fill="#137b7a"/>
+<polygon points="1280,487 1291,481 1291,493" fill="#137b7a"/>
+<path d="M1280 650H1340V763H1395" fill="none" stroke="#775bb0" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<polygon points="1395,763 1384,757 1384,769" fill="#775bb0"/>
+<polygon points="1280,650 1291,644 1291,656" fill="#775bb0"/>
+<text x="1395" y="901" font-family="DejaVu Sans,Arial,sans-serif" font-size="22" font-weight="600" fill="#775bb0">HTTPS desde el backend</text>
+<text x="1395" y="932" font-family="DejaVu Sans,Arial,sans-serif" font-size="18" font-weight="400" fill="#52697a">Claves y tokens en el servidor</text>
+<text x="560" y="829" font-family="DejaVu Sans,Arial,sans-serif" font-size="25" font-weight="700" fill="#137b7a">Persistencia geoespacial en archivos</text>
+<rect x="560" y="855" width="720" height="255" rx="12" fill="#fff" stroke="#a5cbbb" stroke-width="1.5"/>
+<ellipse cx="595" cy="888" rx="15" ry="6" fill="#d7eae3" stroke="#74a594"/>
+<path d="M580 888V907C580 916 610 916 610 907V888" fill="none" stroke="#74a594" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="580" y="948" font-family="DejaVu Sans,Arial,sans-serif" font-size="22" font-weight="600" fill="#173449">Base incluida</text>
+<text x="580" y="983" font-family="DejaVu Sans,Arial,sans-serif" font-size="20" font-weight="400" fill="#52697a">Histórico INAB</text>
+<text x="580" y="1014" font-family="DejaVu Sans,Arial,sans-serif" font-size="20" font-weight="400" fill="#52697a">JSON · Parquet</text>
+<text x="580" y="1045" font-family="DejaVu Sans,Arial,sans-serif" font-size="18" font-weight="400" fill="#52697a">GeoJSON · PMTiles</text>
+<text x="580" y="1076" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="400" fill="#52697a">cemec-sitio-estatico/</text>
+<ellipse cx="826" cy="888" rx="15" ry="6" fill="#d7eae3" stroke="#74a594"/>
+<path d="M811 888V907C811 916 841 916 841 907V888" fill="none" stroke="#74a594" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="811" y="948" font-family="DejaVu Sans,Arial,sans-serif" font-size="22" font-weight="600" fill="#173449">Catálogo activo</text>
+<text x="811" y="983" font-family="DejaVu Sans,Arial,sans-serif" font-size="17" font-weight="400" fill="#52697a">Snapshots versionados</text>
+<text x="811" y="1014" font-family="DejaVu Sans,Arial,sans-serif" font-size="20" font-weight="400" fill="#52697a">JSON · Parquet</text>
+<text x="811" y="1045" font-family="DejaVu Sans,Arial,sans-serif" font-size="17" font-weight="400" fill="#52697a">Estado + procedencia</text>
+<text x="811" y="1076" font-family="DejaVu Sans,Arial,sans-serif" font-size="16" font-weight="400" fill="#52697a">runtime/firms/</text>
+<ellipse cx="1071" cy="888" rx="15" ry="6" fill="#d7eae3" stroke="#74a594"/>
+<path d="M1056 888V907C1056 916 1086 916 1086 907V888" fill="none" stroke="#74a594" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="1056" y="948" font-family="DejaVu Sans,Arial,sans-serif" font-size="22" font-weight="600" fill="#173449">Cachés y tareas</text>
+<text x="1056" y="983" font-family="DejaVu Sans,Arial,sans-serif" font-size="20" font-weight="400" fill="#52697a">Imágenes PNG</text>
+<text x="1056" y="1014" font-family="DejaVu Sans,Arial,sans-serif" font-size="19" font-weight="400" fill="#52697a">Metadatos JSON</text>
+<text x="1056" y="1045" font-family="DejaVu Sans,Arial,sans-serif" font-size="18" font-weight="400" fill="#52697a">Jobs y uso de APIs</text>
+<text x="1056" y="1076" font-family="DejaVu Sans,Arial,sans-serif" font-size="17" font-weight="400" fill="#52697a">runtime/</text>
+<path d="M791 880V1088M1036 880V1088" fill="none" stroke="#d7e1e9" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M840 530V778H543V900H560" fill="none" stroke="#2d5fb1" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<polygon points="560,900 549,894 549,906" fill="#2d5fb1"/>
+<polygon points="840,530 834,541 846,541" fill="#2d5fb1"/>
+<text x="563" y="665" font-family="DejaVu Sans,Arial,sans-serif" font-size="19" font-weight="400" fill="#2d5fb1">Lectura de recursos</text>
+<text x="563" y="694" font-family="DejaVu Sans,Arial,sans-serif" font-size="19" font-weight="400" fill="#2d5fb1">y datos base</text>
+<path d="M1090 750V855" fill="none" stroke="#137b7a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<polygon points="1090,855 1084,844 1096,844" fill="#137b7a"/>
+<polygon points="1090,750 1084,761 1096,761" fill="#137b7a"/>
+<text x="1110" y="790" font-family="DejaVu Sans,Arial,sans-serif" font-size="18" font-weight="400" fill="#137b7a">Leer / escribir</text>
+<path d="M260 750V855" fill="none" stroke="#2d5fb1" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<polygon points="260,855 254,844 266,844" fill="#2d5fb1"/>
+<rect x="80" y="855" width="360" height="255" rx="12" fill="#fff" stroke="#b6c8dc" stroke-width="1.5"/>
+<text x="102" y="896" font-family="DejaVu Sans,Arial,sans-serif" font-size="24" font-weight="700" fill="#173449">Exportación en cliente</text>
+<text x="102" y="939" font-family="DejaVu Sans,Arial,sans-serif" font-size="23" font-weight="400" fill="#173449">PDF analítico</text>
+<text x="102" y="973" font-family="DejaVu Sans,Arial,sans-serif" font-size="23" font-weight="400" fill="#173449">GeoPDF · beta</text>
+<text x="102" y="1007" font-family="DejaVu Sans,Arial,sans-serif" font-size="23" font-weight="400" fill="#173449">CSV / GeoJSON</text>
+<path d="M102 1030H418" fill="none" stroke="#d7e1e9" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="102" y="1064" font-family="DejaVu Sans,Arial,sans-serif" font-size="20" font-weight="400" fill="#52697a">Imágenes + metadatos:</text>
+<text x="102" y="1091" font-family="DejaVu Sans,Arial,sans-serif" font-size="19" font-weight="400" fill="#52697a">descarga desde el backend</text>
+<rect x="560" y="1140" width="720" height="83" rx="12" fill="#dfeee9" stroke="#c5ded4" stroke-width="1.5"/>
+<text x="580" y="1175" font-family="DejaVu Sans,Arial,sans-serif" font-size="22" font-weight="600" fill="#173449">Configuración y ejecución</text>
+<text x="580" y="1206" font-family="DejaVu Sans,Arial,sans-serif" font-size="19" font-weight="400" fill="#52697a">config.yaml + .env local · entorno Conda · scripts/start.py</text>
+<text x="80" y="1161" font-family="DejaVu Sans,Arial,sans-serif" font-size="19" font-weight="400" fill="#2d5fb1">Procesamiento visual y reportes</text>
+<text x="80" y="1190" font-family="DejaVu Sans,Arial,sans-serif" font-size="19" font-weight="400" fill="#2d5fb1">en el navegador del usuario</text>
+<rect x="1395" y="1008" width="330" height="130" rx="12" fill="#fff" stroke="#d7cce7" stroke-width="1.5"/>
+<text x="1415" y="1048" font-family="DejaVu Sans,Arial,sans-serif" font-size="24" font-weight="700" fill="#173449">Esri World Imagery</text>
+<text x="1415" y="1084" font-family="DejaVu Sans,Arial,sans-serif" font-size="19" font-weight="400" fill="#52697a">Teselas de fondo opcionales</text>
+<text x="1415" y="1116" font-family="DejaVu Sans,Arial,sans-serif" font-size="18" font-weight="400" fill="#2d5fb1">Conexión directa al navegador</text>
+<path d="M1560 1138V1290H24V650H80" fill="none" stroke="#2d5fb1" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="8 6"/>
+<polygon points="80,650 69,644 69,656" fill="#2d5fb1"/>
+<text x="545" y="1281" font-family="DejaVu Sans,Arial,sans-serif" font-size="20" font-weight="400" fill="#2d5fb1">Fondo Esri: teselas HTTPS al navegador, sin descarga de colección en CEMEC</text>
+<path d="M50 1325H1750" fill="none" stroke="#d7e1e9" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M55 1361H93" fill="none" stroke="#2d5fb1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="105" y="1368" font-family="DejaVu Sans,Arial,sans-serif" font-size="20" font-weight="400" fill="#52697a">Web y archivos</text>
+<path d="M395 1361H433" fill="none" stroke="#137b7a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="445" y="1368" font-family="DejaVu Sans,Arial,sans-serif" font-size="20" font-weight="400" fill="#52697a">Detecciones / catálogo</text>
+<path d="M865 1361H903" fill="none" stroke="#775bb0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="915" y="1368" font-family="DejaVu Sans,Arial,sans-serif" font-size="20" font-weight="400" fill="#52697a">Imágenes bajo demanda</text>
+<text x="55" y="1397" font-family="DejaVu Sans,Arial,sans-serif" font-size="19" font-weight="400" fill="#52697a">Arquitectura actual: persistencia en archivos versionados, tareas en hilos y servicios Python / Node.js dentro del mismo entorno Conda.</text>
+</svg>

@@ -1,10 +1,10 @@
 # CEMEC · Plataforma de monitoreo de incendios
 
-Observatorio territorial para consultar detecciones térmicas, comparar sensores y generar reportes para Petén, Guatemala. Integraconsultas manuales de NASA FIRMS y EUMETSAT, con imágenes de contexto opcionales de Copernicus.
+Observatorio territorial para consultar detecciones térmicas, comparar sensores y generar reportes para Petén, Guatemala. Integra consultas manuales de NASA FIRMS y EUMETSAT, con imágenes de contexto opcionales de Copernicus.
 
-[![Flujo de CEMEC: fuentes de datos, catálogo de detecciones, imágenes de contexto, visor territorial y resultados](docs/diagramas/cemec-plataforma-flujo.png)](docs/diagramas/cemec-plataforma-flujo.svg)
+[![Arquitectura técnica de CEMEC: cliente React y MapLibre, servidor Node.js, backend Python, persistencia geoespacial y APIs externas](docs/diagramas/cemec-arquitectura-tecnica.png)](docs/diagramas/cemec-arquitectura-tecnica.svg)
 
-Las detecciones térmicas y las imágenes de contexto siguen rutas distintas. El catálogo conserva el histórico y las actualizaciones; el visor permite consultar por territorio y período, comparar observaciones y exportar resultados. [Ver explicación del flujo y archivos editables](docs/diagramas/README.md).
+El navegador ejecuta la interfaz React y MapLibre. Node.js sirve la web y actúa como proxy de la API Python, que integra los proveedores y mantiene los archivos geoespaciales versionados y las cachés. [Ver arquitectura, rutas HTTP y diagramas editables](docs/diagramas/README.md).
 
 ![Interfaz del observatorio CEMEC](docs/imagenes/observatorio-escritorio.png)
 
