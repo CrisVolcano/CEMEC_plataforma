@@ -1,6 +1,6 @@
 # CEMEC · Plataforma de monitoreo de incendios
 
-Observatorio territorial para consultar detecciones térmicas, comparar sensores y generar reportes para Petén, Guatemala. Integra el histórico INAB y consultas manuales de NASA FIRMS y EUMETSAT, con imágenes de contexto opcionales de Copernicus.
+Observatorio territorial para consultar detecciones térmicas, comparar sensores y generar reportes para Petén, Guatemala. Integraconsultas manuales de NASA FIRMS y EUMETSAT, con imágenes de contexto opcionales de Copernicus.
 
 [![Flujo de CEMEC: fuentes de datos, catálogo de detecciones, imágenes de contexto, visor territorial y resultados](docs/diagramas/cemec-plataforma-flujo.png)](docs/diagramas/cemec-plataforma-flujo.svg)
 
