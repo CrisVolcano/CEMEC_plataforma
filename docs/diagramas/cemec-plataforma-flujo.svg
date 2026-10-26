@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="1060" viewBox="0 0 1500 1060" role="img" aria-labelledby="title desc">
+<title id="title">CEMEC: de la observación satelital al análisis territorial</title>
+<desc id="desc">INAB, FIRMS y EUMETSAT alimentan un catálogo de detecciones. Copernicus aporta imágenes de contexto por una ruta independiente. El visor permite filtrar por territorio, fecha, fuente y sensor, comparar observaciones y exportar resultados.</desc>
+<defs><marker id="arrow" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto"><path d="M0 0L8 4.5L0 9" fill="none" stroke="#477461" stroke-width="1.6"/></marker>
+<pattern id="grid" width="30" height="30" patternUnits="userSpaceOnUse"><path d="M30 0H0V30" fill="none" stroke="#e4ece7" stroke-width="1"/></pattern></defs>
+<style>text{font-family:"DejaVu Sans",Arial,sans-serif;fill:#183d30} .heading{font-weight:700;font-size:27px} .body{font-size:21px;fill:#415b50} .small{font-size:18px;fill:#52695f} .line{fill:none;stroke:#477461;stroke-width:2.4;marker-end:url(#arrow)} .context{stroke:#476f94} </style>
+<rect width="1500" height="1060" fill="#fff"/>
+<rect x="0" y="0" width="1500" height="186" fill="#edf4ef"/>
+<rect x="1130" y="0" width="370" height="186" fill="url(#grid)"/>
+<path d="M1210 0C1160 60 1300 80 1240 186M1290 0C1240 60 1380 80 1320 186M1370 0C1320 60 1460 80 1400 186" fill="none" stroke="#c3d8ca" stroke-width="2"/>
+<rect x="52" y="43" width="7" height="96" fill="#277450"/>
+<text x="80" y="84" font-size="43" font-weight="700">CEMEC</text>
+<text x="80" y="126" font-size="27">De la observación satelital al análisis territorial</text>
+<text x="80" y="158" class="small">Plataforma de monitoreo de incendios · Petén, Guatemala</text>
+
+<circle cx="67" cy="230" r="15" fill="#277450"/>
+<text x="67" y="236" text-anchor="middle" style="fill:white;font-size:18px;font-weight:700">1</text>
+<text x="94" y="239" class="heading" style=";font-size:25px">Fuentes de información</text>
+<circle cx="525" cy="230" r="15" fill="#277450"/>
+<text x="525" y="236" text-anchor="middle" style="fill:white;font-size:18px;font-weight:700">2</text>
+<text x="552" y="239" class="heading" style=";font-size:25px">Gestión en CEMEC</text>
+<circle cx="1025" cy="230" r="15" fill="#277450"/>
+<text x="1025" y="236" text-anchor="middle" style="fill:white;font-size:18px;font-weight:700">3</text>
+<text x="1052" y="239" class="heading" style=";font-size:25px">Consulta y resultados</text>
+<rect x="52" y="275" width="365" height="112" rx="10" fill="#f6f9f7" stroke="#d6e2da"/>
+<text x="73" y="308" class="heading" >Histórico INAB</text>
+<text x="73" y="338" class="body" >Observaciones ya incorporadas</text>
+<text x="73" y="366" class="small" >Conjunto inicial de referencia</text>
+<rect x="52" y="405" width="365" height="112" rx="10" fill="#f6f9f7" stroke="#d6e2da"/>
+<text x="73" y="438" class="heading" >NASA FIRMS</text>
+<text x="73" y="468" class="body" >Detecciones VIIRS y MODIS</text>
+<text x="73" y="496" class="small" >Consulta por API · hasta 30 días</text>
+<rect x="52" y="535" width="365" height="112" rx="10" fill="#f6f9f7" stroke="#d6e2da"/>
+<text x="73" y="568" class="heading" >EUMETSAT</text>
+<text x="73" y="598" class="body" >Sentinel-3 SLSTR · FRP</text>
+<text x="73" y="626" class="small" >Consulta por API · datos térmicos</text>
+<path d="M417 331H450V496H510" fill="none" stroke="#477461" stroke-width="2.4"/>
+<polygon points="510,496 499,490 499,502" fill="#477461"/>
+<path d="M417 461H450" fill="none" stroke="#477461" stroke-width="2.4"/>
+<path d="M417 591H450V496" fill="none" stroke="#477461" stroke-width="2.4"/>
+<rect x="510" y="275" width="420" height="372" rx="10" fill="#edf4ef" stroke="#b6cfc0"/>
+<text x="535" y="315" class="heading" >Catálogo de detecciones</text>
+<text x="535" y="353" class="body" >Descarga y validación</text>
+<text x="535" y="385" class="body" >Normalización de observaciones</text>
+<text x="535" y="417" class="body" >Control de duplicados</text>
+<path d="M535 441H905" stroke="#b6cfc0"/>
+<text x="535" y="479" class="heading" style=";font-size:24px">Histórico + actualizaciones</text>
+<text x="535" y="517" class="body" >Origen, fechas y trazabilidad</text>
+<text x="535" y="563" class="small" >Sincronización iniciada</text>
+<text x="535" y="590" class="small" >por el operador de la plataforma</text>
+<path d="M930 460H1010" fill="none" stroke="#477461" stroke-width="2.4"/>
+<polygon points="1010,460 999,454 999,466" fill="#477461"/>
+<rect x="1010" y="275" width="438" height="372" rx="10" fill="#fff" stroke="#adc6b7"/>
+<text x="1035" y="315" class="heading" >Visor territorial</text>
+<text x="1035" y="354" class="body" >Región · municipio</text>
+<text x="1035" y="386" class="body" >Área protegida · zona de manejo</text>
+<text x="1035" y="426" class="body" >Fechas · fuente · sensor</text>
+<path d="M1035 450H1423" stroke="#d6e2da"/>
+<text x="1035" y="490" class="heading" style=";font-size:24px">Mapa interactivo</text>
+<text x="1035" y="525" class="body" >Gráficas y tabla de registros</text>
+<text x="1035" y="560" class="body" >Comparación de observaciones</text>
+<text x="1035" y="609" class="small" >Mismos filtros en la consulta</text>
+<rect x="52" y="706" width="365" height="158" rx="10" fill="#f0f5fa" stroke="#c4d5e4"/>
+<text x="73" y="741" class="heading" style=";font-size:25px">Copernicus Data Space</text>
+<text x="73" y="777" class="body" >Sentinel-3 OLCI</text>
+<text x="73" y="808" class="body" >Mosaicos trimestrales Sentinel-2</text>
+<text x="73" y="840" class="small" >Imágenes opcionales de contexto</text>
+<path d="M417 784H510" fill="none" stroke="#476f94" stroke-width="2.4"/>
+<polygon points="510,784 499,778 499,790" fill="#476f94"/>
+<rect x="510" y="706" width="420" height="158" rx="10" fill="#f0f5fa" stroke="#c4d5e4"/>
+<text x="535" y="741" class="heading" style=";font-size:25px">Imágenes bajo demanda</text>
+<text x="535" y="778" class="body" >Preparación, caché y límites</text>
+<text x="535" y="810" class="body" >Detalle local opcional en Sentinel-2</text>
+<text x="535" y="840" class="small" >No añade puntos al catálogo térmico</text>
+<path d="M930 784H972V600H1010" fill="none" stroke="#476f94" stroke-width="2.4"/>
+<polygon points="1010,600 999,594 999,606" fill="#476f94"/>
+<path d="M1229 647V706" fill="none" stroke="#477461" stroke-width="2.4"/>
+<polygon points="1229,706 1223,695 1235,695" fill="#477461"/>
+<rect x="1010" y="706" width="438" height="206" rx="10" fill="#183d30" stroke="#183d30"/>
+<text x="1035" y="744" class="heading" style="fill:white;font-size:25px">Resultados para compartir</text>
+<text x="1035" y="784" class="body" style="fill:#edf4ef;font-size:20px">Reporte analítico PDF</text>
+<text x="1035" y="818" class="body" style="fill:#edf4ef;font-size:20px">Mapa PDF georreferenciado · beta</text>
+<text x="1035" y="852" class="body" style="fill:#edf4ef;font-size:20px">Datos CSV / GeoJSON</text>
+<text x="1035" y="886" class="body" style="fill:#edf4ef;font-size:20px">Imágenes y metadatos por separado</text>
+<path d="M52 947H1448" stroke="#d6e2da"/>
+<text x="52" y="983" class="body" style=";font-size:20px">Las detecciones son observaciones térmicas; requieren interpretación y verificación en campo.</text>
+<text x="52" y="1018" class="small" >Las imágenes aportan contexto visual. El visor funciona en navegador; los servicios se ejecutan en equipo o servidor propio.</text>
+</svg>

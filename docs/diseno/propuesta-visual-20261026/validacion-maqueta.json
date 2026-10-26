@@ -1,0 +1,17 @@
+{
+  "ok": true,
+  "date": "2026-10-26",
+  "widths": [
+    1600,
+    1024,
+    390
+  ],
+  "dialogs_checked": 16,
+  "no_horizontal_overflow": true,
+  "days": 28,
+  "observations": 986,
+  "daily_rows": 31,
+  "external_requests": [],
+  "console_errors": [],
+  "scope": "Solo maqueta. No se modificó ni revalidó una implementación del visor."
+}

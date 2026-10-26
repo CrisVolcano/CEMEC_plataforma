@@ -1,0 +1,58 @@
+{
+  "date": "2026-10-19",
+  "feature": "Fondo Esri World Imagery opcional en Capas del mapa",
+  "url": "http://localhost:8090",
+  "status": "implemented",
+  "ui_tests_passed": [
+    "tests/check_esri_ui.cjs",
+    "tests/check_redesign_ui.cjs"
+  ],
+  "real_validation": {
+    "evidence": "../runtime/esri-qa/live-verification.json",
+    "desktop": "../runtime/esri-qa/localhost-desktop.png",
+    "mobile": "../runtime/esri-qa/localhost-mobile.png",
+    "date": "2026-10-19T18:11:58.260Z",
+    "default_no_esri_requests": true,
+    "successful_tiles": 18,
+    "statuses": [
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      200
+    ],
+    "stopped_requests_on_disable": true,
+    "unchanged_detections": true,
+    "page_errors": [],
+    "provider": "Esri World Imagery"
+  },
+  "preservation": {
+    "active_unchanged": true,
+    "active_sha256": "8320b636189144589b89160fe94966f52855f9ae8775e6d508b2c5e481c94007",
+    "original_files_verified": 1127,
+    "no_new_dependencies": true,
+    "no_thermal_sync_performed": true
+  },
+  "configuration": "../ui/basemaps.json",
+  "backup_pointer": "../respaldos/ultimo-respaldo-esri.json",
+  "backup_sha256_verified": "1ddbb4a3168f08fcbd8c764a3624529e7ad665dd997a34a22ac5d158e8a5a26d",
+  "limitations": [
+    "Imagen de referencia con fecha variable; no necesariamente coincide con el período de detecciones.",
+    "Requiere servicio externo e Internet; ante un error de tesela vuelve a CEMEC.",
+    "La selección del mapa de fondo no se incorpora a los PDF térmicos.",
+    "Sin descarga masiva ni almacenamiento de teselas en el backend."
+  ]
+}

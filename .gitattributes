@@ -1,0 +1,24 @@
+# Mantener exactos los bytes de la compilación original: su manifiesto usa SHA256.
+cemec-sitio-estatico/** -text
+*.sh text eol=lf
+*.py text eol=lf
+*.js text eol=lf
+*.cjs text eol=lf
+*.css text eol=lf
+*.md text eol=lf
+*.yaml text eol=lf
+*.yml text eol=lf
+*.ttf binary
+*.png binary
+*.pdf binary
+*.docx binary
+*.parquet binary
+*.pmtiles binary
+*.fgb binary
+# Reafirmar prioridad de originales frente a reglas por extensión.
+cemec-sitio-estatico/** -text
+
+# Conservar también el estilo de bibliotecas y compilación recibidas.
+cemec-sitio-estatico/** -whitespace
+ui/vendor/** -whitespace
+docs/**/fonts/** -whitespace

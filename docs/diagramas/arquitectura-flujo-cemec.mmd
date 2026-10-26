@@ -1,0 +1,30 @@
+flowchart TB
+    subgraph fuentes["FUENTES DE INFORMACIÓN"]
+        INAB["Histórico INAB<br/>Datos incluidos"]
+        FIRMS["NASA FIRMS · API<br/>VIIRS y MODIS"]
+        EUM["EUMETSAT · API<br/>Sentinel-3 SLSTR · FRP"]
+        CDSE["Copernicus Data Space · API<br/>Sentinel-3 OLCI y mosaicos Sentinel-2"]
+        ESRI["Esri World Imagery<br/>Mapa de fondo opcional"]
+    end
+    subgraph servidor["SERVIDOR LOCAL DE CEMEC"]
+        ING["Descarga e integración<br/>Validación · normalización · control de duplicados"]
+        CAT[("Catálogo de detecciones<br/>Histórico y actualizaciones")]
+        IMG["Preparación de imágenes<br/>Caché y límites de consumo"]
+        API["Servicio de consulta<br/>Datos e imágenes para el visor"]
+    end
+    subgraph usuario["VISOR WEB · LOCALHOST"]
+        FIL["Selección del usuario<br/>Territorio · fechas · fuente · sensor"]
+        VIS["Mapa · gráficas · registros<br/>Comparación de observaciones"]
+        SAL["Resultados<br/>Reportes PDF · CSV · GeoJSON<br/>Imágenes y metadatos"]
+    end
+    INAB --> CAT
+    FIRMS -->|"Sincronización manual"| ING
+    EUM -->|"Sincronización manual"| ING
+    ING --> CAT
+    CDSE -->|"Solicitud de imagen"| IMG
+    CAT --> API
+    IMG --> API
+    API --> VIS
+    FIL --> VIS
+    ESRI -->|"Teselas al activar el fondo"| VIS
+    VIS --> SAL

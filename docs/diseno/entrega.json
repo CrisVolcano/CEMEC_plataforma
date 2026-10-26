@@ -1,0 +1,24 @@
+{
+  "status": "implementado y verificado en localhost",
+  "date": "2026-10-12",
+  "backup": {
+    "directory": "respaldos/version-previa-diseno_2026-10-12_221718",
+    "archive": "respaldos/version-previa-diseno_2026-10-12_221718/cemec-version-actual.tar.gz"
+  },
+  "backup_verified": true,
+  "images": [
+    "docs/diseno/01-interfaz-principal.png",
+    "docs/diseno/02-vistas-complementarias.png"
+  ],
+  "tool": "image_gen integrado",
+  "implementation_modified": true,
+  "source": [
+    "ui/cemec-view.js",
+    "ui/cemec-ui.css",
+    "ui/report-context.js",
+    "scripts/redesign.cjs",
+    "scripts/report_patch.cjs"
+  ],
+  "validation": "docs/validacion-diseno.json",
+  "localhost": "http://localhost:8090"
+}

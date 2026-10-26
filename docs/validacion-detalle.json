@@ -1,0 +1,57 @@
+{
+  "date": "2026-10-19",
+  "feature": "Detalle manual del mosaico trimestral Sentinel-2",
+  "local_url": "http://localhost:8090",
+  "backend_tests": {
+    "command": ".conda-env/bin/python -m unittest discover -s tests -p 'test_*.py'",
+    "passed": 42
+  },
+  "browser_tests_passed": [
+    "tests/check_detail_ui.cjs",
+    "tests/check_sentinel2_ui.cjs",
+    "tests/check_redesign_ui.cjs"
+  ],
+  "real_validation": {
+    "evidence": "../runtime/detail-qa/live-verification.json",
+    "desktop": "../runtime/detail-qa/localhost-desktop.png",
+    "mobile": "../runtime/detail-qa/localhost-mobile.png",
+    "period": [
+      "2026-04-01T00:00:00Z",
+      "2026-06-30T23:59:59Z"
+    ],
+    "resolution_m_per_pixel": 9.976109931388843,
+    "dimensions": [
+      307,
+      115
+    ],
+    "area_km2": 3.5174705586405017,
+    "processing_units": 0.13467788696289062,
+    "cached_repeat": true,
+    "no_processing_on_zoom": true,
+    "page_errors": []
+  },
+  "preservation": {
+    "active_unchanged": true,
+    "active_sha256": "8320b636189144589b89160fe94966f52855f9ae8775e6d508b2c5e481c94007",
+    "dataset": "v-97533ecf9b1751b1",
+    "total_points": 66606,
+    "original_files_verified": 1127,
+    "retention_mode": "dry_run",
+    "retention_candidates": 0
+  },
+  "backup": {
+    "pointer": "../respaldos/ultimo-respaldo-detalle.json",
+    "archive_sha256_verified": "ec9c8a3cedf50afacfb221ae2f5b0e6e85a24ba59e7d25ea2625bc7c35d28578"
+  },
+  "limits": {
+    "max_area_km2": 400,
+    "max_width_km": 30,
+    "max_image_side": 1024,
+    "shared_new_preparations_per_day_utc": 6
+  },
+  "limitations": [
+    "Resolución objetivo aproximada de 10 m; áreas mayores pueden resultar más gruesas por el máximo de 1024 píxeles.",
+    "Las PU medidas corresponden a un recorte concreto, no al consumo total de la cuenta.",
+    "Sin prueba de carga pública concurrente; despliegue local."
+  ]
+}

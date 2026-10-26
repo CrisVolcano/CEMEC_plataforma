@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "edition": "beta-2026-03-v1",
+  "source_catalog": "v-79544d8e805b0b1d",
+  "source_boundary_version": "cemec-2025-geoboundaries-9469f09",
+  "period": {
+    "start": "2026-03-01",
+    "end": "2026-03-31",
+    "time_zone": "UTC"
+  },
+  "coordinates": "OGC:CRS84 · longitud, latitud WGS84",
+  "publication_status": "Prueba local. Publicación institucional pendiente de revisión.",
+  "sources_sha256": {
+    "territories.geojson": "020dc80c6a9925e5852e3c6d6aec240078c61bce69e554c4b4d5c78b5326e25e",
+    "web/2026-03.json": "2f6f2ed607f6cc2195e7f5ca00a70c6a4be641fe3f4e585d03af0dc70b39f08f",
+    "catalog.json": "c1ca229d1b8ed28a538d80b090788a81844431fec6c87dea4c3e922cc8f4cc0a"
+  },
+  "point_sources": {
+    "INAB · puntos de calor": 986
+  },
+  "layers": [
+    {
+      "id": "municipios",
+      "title": "Municipios de Petén",
+      "file": "municipios.geojson",
+      "count": 14,
+      "bytes": 308683,
+      "sha256": "0f7df20d1171fd9182755ef7c68367eedf7488a161701b37cb85dd355a8c73af",
+      "source": "geoBoundaries · CONRED/OCHA · CC BY 3.0 IGO",
+      "limitations": "Límites de referencia; verificar vigencia y adecuación a la escala del análisis."
+    },
+    {
+      "id": "areas-protegidas",
+      "title": "Áreas protegidas",
+      "file": "areas-protegidas.geojson",
+      "count": 68,
+      "bytes": 171898,
+      "sha256": "9cdd8beeb6b614530e0b01d677a051981ada4044f71b4abead61c9d87f0d2239",
+      "source": "CEMEC · zonificación 2025",
+      "limitations": "Son geometrías del catálogo, incluidos fragmentos. Pueden existir solapamientos. Condiciones de redistribución por confirmar con CEMEC."
+    },
+    {
+      "id": "viirs-marzo-2026",
+      "title": "Detecciones VIIRS · marzo de 2026",
+      "file": "viirs-marzo-2026.geojson",
+      "count": 986,
+      "bytes": 329598,
+      "sha256": "009493f0e535a3512e05b787ba1e47dbe8b5e8213b499f406fa903bc16567b8e",
+      "source": "INAB · puntos de calor; instrumento VIIRS",
+      "limitations": "Detecciones, no incendios individuales ni superficie quemada. No interpretar ausencia de registros como ausencia de fuego. No se aplicó deduplicación científica adicional."
+    }
+  ]
+}

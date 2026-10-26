@@ -1,0 +1,12 @@
+name: cemec-plataforma
+channels:
+  - conda-forge
+  - nodefaults
+dependencies:
+  - python=3.12
+  - nodejs=22
+  - pyyaml=6.0
+  - shapely=2.1
+  - numpy=2 # Dependencia existente; cobertura raster de la capa OLCI.
+  - pyarrow=23
+  - eumdac=3.1.1

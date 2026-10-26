@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="es">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>CEMEC · Propuesta del observatorio</title><link rel="stylesheet" href="propuesta.css"><script src="datos-ejemplo.js" defer></script><script src="propuesta.js" defer></script></head>
+<body>
+<div class="preview">Propuesta visual para revisión <span>Ejemplo fijo · sin operaciones sobre la aplicación</span><a href="version-actual.png" target="_blank" rel="noopener">Ver versión actual</a></div>
+<header class="masthead"><div class="identity"><strong>CEMEC</strong><span>Observatorio<br>de incendios</span></div><nav aria-label="Secciones propuestas"><button class="nav active" data-home>Explorar</button><button class="nav" data-panel="datos">Datos</button><button class="nav" data-panel="fuentes">Fuentes y sensores</button></nav><button class="admin" data-panel="admin">Administración <span aria-hidden="true">⌄</span></button></header>
+<main>
+  <section class="heading"><div><p class="location">Monitoreo territorial / Guatemala</p><h1>Petén</h1><p>Observaciones satelitales para comprender el territorio.</p></div><div class="heading-actions"><button class="button" data-panel="descargar">Descargar datos</button><button class="button primary" data-panel="reporte">Generar reporte</button></div></section>
+  <div class="workspace">
+    <aside class="selection"><details open id="territory-panel"><summary>Selección territorial</summary><div class="selection-content">
+      <label>Unidad de análisis<select aria-label="Unidad de análisis"><option>Región</option><option>Municipio</option><option>Área protegida</option><option>Zona de manejo</option></select></label>
+      <label>Buscar territorio<input type="search" placeholder="Nombre del territorio" aria-label="Buscar territorio"></label>
+      <label>Territorio<select aria-label="Territorio"><option>Petén</option><option>San Andrés</option><option>La Libertad</option><option>Parque Nacional Laguna del Tigre</option></select></label>
+      <div class="dates"><label>Desde · UTC<input type="date" value="2026-03-01"></label><label>Hasta · UTC<input type="date" value="2026-03-31"></label></div>
+      <div class="periods" aria-label="Períodos rápidos"><button data-demo>1 día</button><button data-demo>7 días</button><button data-demo>30 días</button><button data-demo>Temporada</button></div>
+      <button class="button advanced" data-panel="filtros">Más filtros <span>1 activo</span></button>
+      <div class="filter-state"><span>Selección del ejemplo</span><strong>VIIRS</strong><p>Histórico INAB · marzo de 2026<br>Fechas de adquisición en UTC</p><button class="text-button" data-demo>Restablecer selección</button></div>
+    </div></details><p class="mobile-scope">Petén · 01–31 marzo de 2026 · VIIRS</p>
+    <details class="help"><summary>Cómo leer estos datos</summary><p>Los puntos son detecciones térmicas. No equivalen a incendios individuales ni indican superficie quemada.</p><button class="text-button" data-panel="fuentes">Diferencias entre sensores</button></details>
+    <p class="edition">Ejemplo del catálogo original<br><span>v-79544d8e805b0b1d</span></p></aside>
+    <section class="results" aria-label="Resultados del ejemplo">
+      <div class="selection-strip"><div><strong class="count">986</strong><span>detecciones térmicas</span></div><div><strong id="days">—</strong><span>días con observaciones</span></div><div class="scope"><strong>01 — 31 marzo 2026</strong><span>Petén · instrumento VIIRS</span></div></div>
+      <div class="coverage"><span class="dot"></span><p>Ejemplo histórico. La cobertura consultada y el estado de cada API se mantienen en Fuentes y sensores.</p><button class="text-button" data-panel="fuentes">Ver cobertura</button></div>
+      <div class="view-toolbar"><div role="group" aria-label="Vistas de resultados"><button class="tab active" data-home>Mapa</button><button class="tab" data-panel="analisis">Análisis</button><button class="tab" data-panel="registros">Registros</button></div><button class="text-button" data-panel="comparar">Comparar observaciones <span aria-hidden="true">⇄</span></button></div>
+      <div class="imagery-bar"><span>Imágenes de contexto</span><button data-panel="s3">Sentinel-3 · OLCI</button><button data-panel="s2">Mosaico Sentinel-2</button><button class="layers-button" data-panel="capas">Capas del mapa</button></div>
+      <figure class="map"><picture><source media="(max-width:760px)" srcset="mapa-real-movil.png"><img src="mapa-real.png" alt="Captura real del mapa de Petén con detecciones VIIRS de marzo de 2026. El mapa de esta propuesta es una imagen estática."></picture><figcaption><span>Petén, Guatemala</span><span>Captura del visor actual · mapa estático</span></figcaption></figure>
+      <div class="legend"><span><i></i> VIIRS</span><span>Color por sensor</span><button class="text-button" data-panel="filtros">Cambiar criterio de color</button><small>CEMEC · geoBoundaries CC BY 3.0 IGO</small></div>
+      <section class="timeline"><div><h2>Cuándo se observaron</h2><span>Detecciones por día · marzo de 2026</span></div><div id="daily-bars" class="daily-bars" aria-label="Distribución diaria de las 986 detecciones"></div><div class="axis"><span>01 mar</span><span>15 mar</span><span>31 mar</span></div><details><summary>Consultar valores diarios</summary><table><caption>Datos reales del ejemplo, no una serie simulada</caption><thead><tr><th>Fecha UTC</th><th>Detecciones VIIRS</th></tr></thead><tbody id="daily-table"></tbody></table></details></section>
+    </section>
+  </div>
+  <div class="closing"><p>Las observaciones dependen del sensor, sus condiciones de adquisición y el producto distribuido.</p><button class="text-button" data-panel="fuentes">Consultar metodología y limitaciones</button></div>
+</main>
+<footer><span>CEMEC · Observatorio de incendios</span><span>Propuesta de presentación · las funciones operativas permanecen en el visor actual</span></footer>
+<p id="demo-status" class="demo-status" role="status" hidden></p>
+<dialog id="panel" aria-labelledby="panel-title"><header><div><span class="dialog-label">Ubicación propuesta de las funciones</span><h2 id="panel-title"></h2></div><button id="close-panel" aria-label="Cerrar panel">×</button></header><div id="panel-body"></div><div class="dialog-note">Maqueta de revisión: estos controles no ejecutan operaciones ni cambian el observatorio.</div></dialog>
+</body></html>

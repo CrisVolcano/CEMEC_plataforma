@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Datos para SIG · Beta CEMEC</title>
+  <link rel="stylesheet" href="/sig-beta/portal.css">
+  <script src="/sig-beta/portal.js" defer></script>
+</head>
+<body>
+  <header><a class="brand" href="/">CEMEC</a><a href="/">Volver al observatorio</a><span class="badge">BETA LOCAL</span></header>
+  <main>
+    <p class="eyebrow">DATOS ABIERTOS Y ANÁLISIS REPRODUCIBLE · PRUEBA</p>
+    <h1>Del dato al análisis</h1>
+    <p class="intro">Explora un ejercicio con datos de Petén y continúa en GeoLibre, un SIG web externo. Las herramientas del ejercicio calculan en tu navegador; CEMEC entrega los datos.</p>
+    <section class="exercise" aria-labelledby="exercise-title">
+      <h2 id="exercise-title">¿Qué detecciones VIIRS están dentro de un área protegida?</h2>
+      <p>Trabajaremos con marzo de 2026 y límites del catálogo original. Es una copia fija: no cambia al sincronizar el observatorio ni hereda sus filtros.</p>
+      <ol>
+        <li>Descarga las tres capas y abre GeoLibre con el botón inferior.</li>
+        <li>Agrega los archivos descargados desde el menú <strong>Add Data / Agregar datos</strong> de GeoLibre.</li>
+        <li>Selecciona un área protegida. Prepara una capa con esa selección para usarla como máscara.</li>
+        <li>En <strong>Processing → GeoLibre Toolbox → Vector</strong>, usa <strong>Select by location</strong>: puntos VIIRS que intersectan la máscara. Elige el motor <strong>Client (Turf.js)</strong>.</li>
+        <li>Revisa el conteo y exporta los puntos resultantes. Guarda también los metadatos del ejercicio.</li>
+      </ol>
+      <p class="note">Los nombres de los menús pueden variar. Contar detecciones no equivale a contar incendios ni calcular superficie quemada. Si una operación usa la capa completa en lugar de la selección, crea primero la capa de la selección.</p>
+      <div class="actions"><a class="button primary" id="open-gis" href="https://web.geolibre.app/" target="_blank" rel="noopener noreferrer">Abrir GeoLibre ↗</a><a class="button" href="/sig-beta/data/manifest.json" download>Descargar metadatos</a></div>
+      <p id="connection-status" role="status">Preparando el acceso…</p>
+    </section>
+    <section aria-labelledby="layers-title"><h2 id="layers-title">Capas del ejercicio</h2><p id="summary"></p><div class="layers" id="layers"></div><p id="error" role="alert" hidden></p></section>
+    <section class="limits"><h2>Cómo interpretar y conservar tu trabajo</h2><p>Conserva los identificadores, las fuentes, el período UTC, la versión de límites y los parámetros del análisis. Los límites pueden solaparse; una detección puede pertenecer a varias unidades.</p><p>Los resultados quedan en tu entorno y debes descargarlos antes de cerrar la sesión. No se guardan en CEMEC. La apertura de GeoLibre requiere internet y depende de un sitio externo.</p><p>Esta beta utiliza copias de prueba. La revisión de calidad, condiciones de publicación y comparación con un resultado de referencia siguen pendientes.</p></section>
+  </main>
+  <footer>CEMEC · Catálogo de prueba · <a href="https://geolibre.app/user-guide/processing/" target="_blank" rel="noopener noreferrer">Guía de herramientas de GeoLibre ↗</a></footer>
+</body>
+</html>

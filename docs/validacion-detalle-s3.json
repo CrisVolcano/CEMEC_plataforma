@@ -1,0 +1,43 @@
+{
+  "date": "2026-10-19",
+  "feature": "Recorte manual Sentinel-3 OLCI",
+  "url": "http://localhost:8090",
+  "backend_tests_passed": 44,
+  "browser_tests_passed": [
+    "tests/check_olci_detail_ui.cjs",
+    "tests/check_olci_ui.cjs",
+    "tests/check_detail_ui.cjs"
+  ],
+  "real_validation": {
+    "evidence": "../runtime/olci-detail-qa/live-verification.json",
+    "same_time_window": true,
+    "repeat_cached": true,
+    "unchanged_budget_on_repeat": true,
+    "active_unchanged": true,
+    "resolution_m_per_pixel": 294.480412687073,
+    "processing_units": "0.01",
+    "area_km2": 142.89076009769877
+  },
+  "original_files_verified": 1127,
+  "active_sha256_unchanged": "8320b636189144589b89160fe94966f52855f9ae8775e6d508b2c5e481c94007",
+  "backup_pointer": "../respaldos/ultimo-respaldo-detalle-s3.json",
+  "backup_sha256_verified": "710181084fdc2a0b813bc078ae9a8ff1265fee0e67fb4f9a95206157b90a77c9",
+  "retention": {
+    "mode": "dry_run",
+    "candidates": 0
+  },
+  "limits": {
+    "new_olci_details_per_day_utc": 6,
+    "max_image_side": 1024,
+    "max_area_km2": 40000,
+    "max_width_km": 300,
+    "grid_m": 1000
+  },
+  "limitations": [
+    "OLCI tiene 300 m nominales. Recortar una imagen ya próxima a esa escala no aporta más detalle físico.",
+    "El contador de nuevos recortes OLCI no limita las vistas generales OLCI ni registra toda la cuenta CDSE.",
+    "Sin prueba de carga pública concurrente."
+  ],
+  "status": "retirado por solicitud del usuario el 2026-10-19",
+  "reason": "El recorte OLCI no mejora el detalle físico de la vista general."
+}

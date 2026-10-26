@@ -1,0 +1,34 @@
+{
+  "status": "implementado y verificado en localhost",
+  "date_local": "2026-10-19",
+  "verified_at_utc": "2026-10-19T16:54:27.716384+00:00",
+  "localhost": "http://localhost:8090",
+  "tests": {
+    "unit_and_http_passed": 36,
+    "sentinel2_ui": "passed",
+    "olci_ui": "passed",
+    "redesign_ui": "passed"
+  },
+  "real_reference_utc": "2026-10-18T16:48:59Z",
+  "satellite": "Sentinel-2C",
+  "territory_fraction_with_data": 0.15240542453103792,
+  "cloud_cover_reference_tile": 98.75,
+  "nominal_rgb_resolution_m": 10,
+  "preview_m_at_center": 152.48670926589122,
+  "historical_products": 9,
+  "page_errors": [],
+  "active_dataset_sha256_preserved": "8320b636189144589b89160fe94966f52855f9ae8775e6d508b2c5e481c94007",
+  "detections_preserved": true,
+  "backup": {
+    "archive": "respaldos/antes-sentinel2_20261019_104645/codigo.tar.gz"
+  },
+  "retention": "dry_run; Sentinel-2 30 días sin uso; sin eliminación automática",
+  "evidence": "runtime/sentinel2-qa/live-verification.json",
+  "limitations": [
+    "Vista regional reducida a máximo 1600 píxeles por lado",
+    "La referencia puede ser parcial o nubosa y combinar teselas",
+    "PDF térmico sin imágenes RGB"
+  ],
+  "version_status": "Versión L2A anterior, sustituida por mosaicos trimestrales",
+  "superseded_by": "docs/validacion-mosaicos.json"
+}

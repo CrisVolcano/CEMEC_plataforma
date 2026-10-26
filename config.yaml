@@ -1,0 +1,171 @@
+# Rutas relativas a este archivo; no dependen del directorio de la terminal.
+schema_version: 1
+project:
+  name: CEMEC · Observatorio de calor
+  deployment: local-api
+  frontend_source_included: false
+artifacts:
+  archive: origen/cemec-sitio-estatico.zip
+  archive_sha256: 6b55b22f65332d5e604e725a9cee6e75ba67970d68eb62cc1ba8e7e6ae334f81
+  manual: origen/Manual_Instalacion_y_Uso_Observatorio_CEMEC.docx
+  manual_sha256: 15719010d94f21ac8cf45e57c4623f4a62d552048116e8bc89d2007abcc659a5
+  original_manifest: docs/original-manifest.json
+environment:
+  specification: environment.yml
+  prefix: .conda-env
+  package_cache: .conda-pkgs
+  supported_platform: linux-64
+  exact_lock: environment-linux-64.lock.txt
+server:
+  root: cemec-sitio-estatico
+  host: 127.0.0.1
+  port: 8000
+  open_browser: false
+  http_range: true
+interface:
+  layout: modern # modern o legacy; CEMEC_LEGACY_UI=1 permite volver temporalmente.
+  source: ui/cemec-view.js
+  stylesheet: ui/cemec-ui.css
+  basemaps: ui/basemaps.json # Consumido por el adaptador; predeterminado CEMEC.
+  report_context: ui/report-context.js
+  design_reference: docs/diseno/README.md
+  rollback: respaldos/RESTAURAR.md
+firms:
+  enabled: true
+  api_area: https://firms.modaps.eosdis.nasa.gov/api/area/
+  key_env: FIRMS_MAP_KEY
+  bbox: [-91.443759, 15.844419, -89.139843, 17.819454]
+  days: 3
+  max_days_per_sync: 30 # Consulta dividida en bloques de hasta 5 días por producto.
+  sources:
+    - VIIRS_NOAA20_NRT
+    - VIIRS_NOAA21_NRT
+    - VIIRS_SNPP_NRT
+  timeout_seconds: 60
+  retries: 2
+  storage: runtime/firms
+  update_mode: manual
+eumetsat:
+  enabled: true
+  collection: EO:EUM:DAT:0417
+  consumer_key_env: EUMETSAT_CONSUMER_KEY
+  consumer_secret_env: EUMETSAT_CONSUMER_SECRET
+  bbox: [-91.443759, 15.844419, -89.139843, 17.819454]
+  days: 3
+  max_days_per_sync: 31
+  variant: MWIR1km_standard
+  product_limit: null # Recorre todos los resultados, incluida la paginación.
+  timeout_seconds: 60
+  retries: 2
+  cache: runtime/eumetsat
+  update_mode: manual
+olci:
+  enabled: true
+  cache: runtime/olci
+  update_mode: on_demand
+  client_id_env: CDSE_CLIENT_ID
+  client_secret_env: CDSE_CLIENT_SECRET
+  collection: sentinel-3-olci
+  detail_enabled: false # Retirado en OLCI: el recorte no añade resolución.
+  detail_max_image_side: 1024
+  detail_max_area_km2: 40000
+  detail_max_width_km: 300
+  detail_grid_m: 1000
+  max_new_details_per_day: 6 # Solo recortes nuevos OLCI; caché sin gasto de preparación.
+  output_crs: EPSG:3857
+  nominal_resolution_m: 300
+  rgb_bands: [B08, B06, B04]
+  documentation: docs/validacion-cdse-olci.md
+sentinel2:
+  enabled: true
+  cache: runtime/sentinel2
+  update_mode: on_demand
+  client_id_env: CDSE_CLIENT_ID
+  client_secret_env: CDSE_CLIENT_SECRET
+  collection: byoc-5460de54-082e-473a-b6ea-d5cbe3c17cca
+  product: quarterly_mosaic
+  output_crs: EPSG:3857
+  nominal_resolution_m: 10
+  max_image_side: 1024 # Vista regional compartida; sin nuevas solicitudes con el zoom.
+  shared_unit_id: region-peten
+  shared_bbox: [-91.443759, 15.844419, -89.139843, 17.819454]
+  catalog_cache_hours: 24
+  max_new_mosaics_per_day: 6 # Los aciertos de caché no consumen este presupuesto.
+  detail_enabled: true
+  detail_max_image_side: 1024
+  detail_max_area_km2: 400
+  detail_max_width_km: 30
+  detail_grid_m: 200 # Alineación de recortes para reutilizar vistas próximas.
+  rgb_bands: [B04, B03, B02]
+  documentation: docs/sentinel2-visor.md
+cdse_olci_validation:
+  status: access_validated
+  client_id_env: CDSE_CLIENT_ID
+  client_secret_env: CDSE_CLIENT_SECRET
+  collection: sentinel-3-olci
+  output_crs: EPSG:3857
+  nominal_resolution_m: 300
+  rgb_bands: [B08, B06, B04]
+  script: scripts/check_cdse_olci.py
+  documentation: docs/validacion-cdse-olci.md
+  results: runtime/cdse-validation
+dataset:
+  version: v-79544d8e805b0b1d
+  boundary_version: cemec-2025-geoboundaries-9469f09
+  total_points: 66582
+  date_min: '2026-01-03'
+  date_max: '2026-10-06'
+  territory_count: 117
+  territory_categories:
+    region: 1
+    municipio: 14
+    protegida: 68
+    manejo: 34
+  observation_timezone: UTC
+  catalog: /data/catalog.json
+  products_catalog: /products/catalog.json
+replication:
+  preserve_original_files: true
+  serve_at_url_root: true
+  browser_requires_webgl: true
+  external_fonts:
+    - https://fonts.googleapis.com
+    - https://fonts.gstatic.com
+  external_fonts_description: DM Sans y Manrope; sin Internet se usan las fuentes de respaldo del CSS original.
+  backend_included: true
+  unavailable_server_features:
+    - Sincronización INAB adicional al histórico original
+    - Programación automática de actualizaciones
+  other_context_requirements:
+    - Geometrías y cartografía para cambiar de región; el backend FIRMS actualiza las detecciones.
+    - Geometrías y detecciones compatibles con el esquema de los catálogos.
+    - Regenerar PMTiles, particiones, estadísticas y productos de forma consistente.
+retention:
+  mode: dry_run # Solo inventario; no elimina archivos ni activa tareas automáticas.
+  olci_unused_days: 30
+  sentinel2_unused_days: 30
+  temporary_hours: 24
+  snapshot_days: 30
+  keep_previous_snapshots: 3
+  job_log_days: 90
+  preserve_history: true
+  preserve_originals_and_backups: true
+  report: runtime/retention/latest-plan.json
+  command: .conda-env/bin/python scripts/retention.py
+validation:
+  http_tests: tests/test_server.py
+  firms_tests: tests/test_firms.py
+  firms_ui_test: tests/check_firms_ui.cjs
+  eumetsat_tests: tests/test_eumetsat.py
+  eumetsat_ui_test: tests/check_eumetsat_ui.cjs
+  sentinel2_tests: tests/test_sentinel2.py
+  mosaic_tests: tests/test_mosaics.py
+  sentinel2_ui_test: tests/check_sentinel2_ui.cjs
+  detail_ui_test: tests/check_detail_ui.cjs
+  redesign_ui_test: tests/check_redesign_ui.cjs
+  esri_ui_test: tests/check_esri_ui.cjs
+  authenticated_firms_test: Verificada el 2026-10-08
+  integrity_command: .conda-env/bin/python scripts/replicate.py --verify-only
+  optional_visual_tool: playwright@1.58.2
+  optional_visual_cache: .conda-env/.npm-cache
+  visual_browser: Chrome instalado en el equipo

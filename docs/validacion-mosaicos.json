@@ -1,0 +1,61 @@
+{
+  "status": "implementado y verificado",
+  "date_local": "2026-10-19",
+  "verified_at_utc": "2026-10-19T17:20:12.268260+00:00",
+  "localhost": "http://localhost:8090",
+  "tests": {
+    "unit_http_passed": 40,
+    "mosaics_ui": "passed",
+    "olci_ui": "passed",
+    "redesign_ui": "passed"
+  },
+  "mosaic": {
+    "collection": "byoc-5460de54-082e-473a-b6ea-d5cbe3c17cca",
+    "year": 2026,
+    "quarter": 2,
+    "period_utc": [
+      "2026-04-01T00:00:00Z",
+      "2026-06-30T23:59:59Z"
+    ],
+    "dimensions": [
+      1024,
+      918
+    ],
+    "preview_m_at_center": 239.72958812035233,
+    "territory_fraction_with_data": 1,
+    "processing_units": 3.5859375
+  },
+  "comparison": {
+    "previous_scene_pu": 8.673095703125,
+    "relative_reduction_percent": 58.65446868402533,
+    "scope": "Comparación específica de vistas de tamaño distinto (1024 frente a 1600); no ahorro universal a igual resolución"
+  },
+  "shared_cache_between_units_verified": true,
+  "no_processing_on_zoom_verified": true,
+  "page_errors": [],
+  "active_dataset_sha256_preserved": "8320b636189144589b89160fe94966f52855f9ae8775e6d508b2c5e481c94007",
+  "backup": {
+    "archive": "respaldos/antes-mosaicos_20261019_110806/codigo.tar.gz"
+  },
+  "budget": {
+    "new_attempts_per_day_utc": 6,
+    "catalog_ttl_hours": 24
+  },
+  "retention_mode": "dry_run",
+  "evidence": "runtime/mosaics-qa/live-verification.json",
+  "limitations": [
+    "El mosaico combina fechas del trimestre y puede conservar huecos",
+    "La vista de 1024 píxeles no gana detalle al hacer zoom",
+    "La cuota global CDSE puede incluir otros usos no registrados aquí"
+  ],
+  "shared_cache_verified_with": "San Luis",
+  "daily_usage_after_repeated_checks": {
+    "days": {
+      "2026-10-19": {
+        "attempts": 1,
+        "completed": 1,
+        "processing_units": 3.5859375
+      }
+    }
+  }
+}

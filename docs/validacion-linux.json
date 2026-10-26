@@ -1,0 +1,35 @@
+{
+  "verified_at": "2026-10-08T11:29:29.719990-06:00",
+  "platform": "linux-64",
+  "original_files_verified": 1127,
+  "integrity": "SHA-256 de ZIP, manual y cada archivo extraído; referencias locales de catálogos comprobadas",
+  "runtime": {
+    "python": "3.12.15",
+    "node": "v22.23.2",
+    "pyyaml": "6.0.3"
+  },
+  "environment_lock": {
+    "path": "environment-linux-64.lock.txt",
+    "sha256": "60f04cc4e985b88d25497bd932ca5d56771375f9ee4bfca65b84d0f8fdca9bf1"
+  },
+  "http_tests": {
+    "command": ".conda-env/bin/python -m unittest discover -s tests -v",
+    "passed": 8,
+    "failed": 0
+  },
+  "visual_check": {
+    "browser": "Google Chrome headless",
+    "tool": "playwright@1.58.2",
+    "screenshot": "runtime/cemec-linux.png",
+    "viewport": [
+      1600,
+      1000
+    ],
+    "result": "Interfaz original visible, estadísticas calculadas y cartografía renderizada con puntos, límites e hidrografía.",
+    "default_filtered_points": 30201
+  },
+  "limits": [
+    "No se incluye backend de sincronización ni pipeline original.",
+    "No se probaron todas las interacciones ni todas las opciones de exportación del frontend."
+  ]
+}

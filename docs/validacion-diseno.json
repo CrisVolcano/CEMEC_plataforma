@@ -1,0 +1,48 @@
+{
+  "verified_at_utc": "2026-10-13T05:07:09.647741+00:00",
+  "status": "implementado y verificado en localhost",
+  "localhost": "http://localhost:8090",
+  "active_dataset": "v-97533ecf9b1751b1",
+  "total_points": 66606,
+  "active_state_sha256": "8320b636189144589b89160fe94966f52855f9ae8775e6d508b2c5e481c94007",
+  "active_state_preserved_during_deployment": true,
+  "original_files_integrity": {
+    "verified": true,
+    "files": 1127
+  },
+  "checks": {
+    "unit_and_http_tests": {
+      "passed": 25
+    },
+    "firms_ui": "passed; datos sintéticos aislados",
+    "eumetsat_ui": "passed; 17 productos sintéticos, almacenamiento aislado",
+    "redesign_ui": "passed; cuatro unidades, filtros, mapas de comparación sincronizados, PDF, CSV, móvil y teclado",
+    "pdf_visual_review": {
+      "pages": 6,
+      "passed": true,
+      "artifact": "runtime/redesign-qa/comparison-report.pdf"
+    },
+    "deployed_browser": "passed; navegación, mapa real, diálogo de reporte, móvil 390px, cero errores JavaScript",
+    "legacy_layout": "transformación y sintaxis verificadas"
+  },
+  "backup": {
+    "directory": "respaldos/version-previa-diseno_2026-10-12_221718",
+    "archive": "respaldos/version-previa-diseno_2026-10-12_221718/cemec-version-actual.tar.gz"
+  },
+  "source_sha256": {
+    "ui/cemec-view.js": "80b1b9839e007dfaeeebabd4b1c5144bc47348fc706bfbf967e08e429c9ea015",
+    "ui/cemec-ui.css": "35bb374eab154897b97eb75c73bea81203da0d4a568e0dbcc2977f7747d8a5e2",
+    "ui/report-context.js": "159a1f9c5900d3ee047792aa889863ecc6cede77dde0768c7fa9051dd9a5b798",
+    "scripts/redesign.cjs": "e479bbd621912b2a3886ec3abef796887985a7ef6218edcb4f073db466eef841",
+    "scripts/report_patch.cjs": "e21ad7eb250b059519680edbabe095358036280c27f90916258c52d02ad644dc",
+    "scripts/frontend_patch.cjs": "dce6131d6f2dfd514ff41d0bad4207167c884a79a0220b519739722fcd7aa78c",
+    "serve.js": "3cbf55873eb83298588e2bad1604460d020c352fd64798be4cfd92c4d112ce75",
+    "scripts/start.py": "4c3934f03cf191500834d9458a14e5e27de5942da311c8b5828a098483be00ed",
+    "config.yaml": "f933b03d1142d29549b525936fa45243f6a32f6debcb7c08df48bf5fb9bef2e2"
+  },
+  "screenshots": [
+    "runtime/redesign-qa/localhost-desktop.png",
+    "runtime/redesign-qa/localhost-mobile.png"
+  ],
+  "scope": "Interfaz local; conserva conectores FIRMS/EUMETSAT e histórico INAB. Sincronización manual existente y generación PDF a demanda. La utilidad con usuarios aún debe evaluarse."
+}

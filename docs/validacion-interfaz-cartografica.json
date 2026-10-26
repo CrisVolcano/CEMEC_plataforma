@@ -1,0 +1,52 @@
+{
+  "date": "2026-10-26",
+  "status": "implemented_and_verified",
+  "design": "docs/diseno/propuesta-visual-20261026/propuesta.html",
+  "backup": ".respaldos/interfaz-anterior_20261026_130835",
+  "backup_manifest": ".respaldos/interfaz-anterior_20261026_130835/manifest.json",
+  "server": "http://localhost:8090",
+  "python_tests": {
+    "count": 48,
+    "passed": true
+  },
+  "ui_checks": {
+    "redesign": "passed",
+    "firms": "passed (synthetic)",
+    "eumetsat": "passed (synthetic)",
+    "olci": "passed (synthetic)",
+    "sentinel2": "passed (synthetic)",
+    "detail": "passed (synthetic)",
+    "esri": "passed (synthetic tiles)",
+    "sig_beta": "passed",
+    "geopdf": "passed: A4/Carta, 150/200 DPI, imagery, GDAL coordinates, empty selection, exporter failure/retry with active Chromium tab"
+  },
+  "operational_catalog": {
+    "version": "v-dbe8fad2ae497b0a",
+    "total_points": 66609,
+    "date_min": "2026-01-03",
+    "date_max": "2026-10-23"
+  },
+  "screenshots": "runtime/interfaz-cartografica-qa/",
+  "font_delivery": "local TTF, OFL license included",
+  "backend_and_adapter_logic": "unchanged, compared against hidden backup",
+  "public_backup_request_status": 404,
+  "sha256": {
+    "ui/cemec-ui.css": "d06b2f099453fabb1b545d1b65007285e4b7b243a69057725a9ae1ad2ca1aedc",
+    "ui/cemec-view.js": "cfd35b5fd202facd04ea0a13a3d1898e92e9155135c3a043042e5491f7191377",
+    "serve.js": "5fafd962b343bffd6128398f7ab9c5be14dcc4fbb7fa87b1eae6091f95fcd320",
+    "ui/vendor/barlow/Barlow-Regular.ttf": "95aa02c7c43096e0dd44d787ba6216864a67157e402adab59b35572e0c1577ea",
+    "ui/vendor/barlow/Barlow-SemiBold.ttf": "86577cb32f8abe3673db53ca0f4221e6856751a4f6730c867e00f720f8bb1fc5"
+  },
+  "limits": [
+    "No new provider production sync requested during this task",
+    "No Windows acceptance performed",
+    "PDF/Word manuals and existing delivery ZIPs retain previous edition"
+  ],
+  "original_static_verification": {
+    "passed": true,
+    "files": 1127,
+    "points": 66582,
+    "territories": 117
+  },
+  "ui_checks_passed": 9
+}

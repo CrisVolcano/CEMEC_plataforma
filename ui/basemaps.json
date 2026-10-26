@@ -1,0 +1,10 @@
+{
+  "default": "cemec",
+  "esri": {
+    "label": "Esri · Imagen satelital",
+    "tiles": ["https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"],
+    "tileSize": 256,
+    "maxzoom": 19,
+    "attribution": "Source: <a href=\"https://www.arcgis.com/home/item.html?id=10df2279f9684e4a9f6a7f08febac2a9\" target=\"_blank\" rel=\"noopener noreferrer\">Esri, Vantor, Earthstar Geographics, and the GIS User Community</a>"
+  }
+}

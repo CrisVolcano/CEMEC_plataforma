@@ -1,0 +1,12 @@
+{
+  "date": "2026-10-26",
+  "status": "implemented_and_verified",
+  "python_tests": 51,
+  "ui_test": "30 días, 18 bloques simulados en tres productos; CSV y fechas comprobados",
+  "live_server": "http://localhost:8090",
+  "max_days_per_sync": 30,
+  "max_days_per_request": 5,
+  "production_sync_executed": false,
+  "active_catalog_unchanged": true,
+  "docs": "docs/firms-30-dias.md"
+}

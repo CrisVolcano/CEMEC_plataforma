@@ -1,0 +1,1150 @@
+@charset "UTF-8";
+/*
+ * Styles of maplibre-gl-export.
+ *
+ * The export dialog and the toolbar shown on the map while adjusting the area are Svelte
+ * components of the internal `@watergis/export-ui` package. Their styles are scoped to the
+ * components and bundled into this file by Vite, after the rules below.
+ *
+ * Every element of the UI has a `gl-export-*` class, and the theme is driven by the
+ * `--gl-export-*` custom properties, so the look is best changed with the custom properties:
+ *   .gl-export-dialog,
+ *   .gl-export-adjust-bar {
+ *     --gl-export-accent: #0f766e;
+ *     --gl-export-radius: 4px;
+ *     --gl-export-font: 'Inter', sans-serif;
+ *   }
+ * The scoped rules are one class more specific than their `gl-export-*` class, so a rule which
+ * overrides them needs one more class too, e.g. `.gl-export-dialog .gl-export-btn--primary`.
+ *
+ * Light or dark: the UI follows the `color-scheme` of the page, e.g. `:root { color-scheme: dark; }`
+ * (`light dark` follows the OS setting; a page without `color-scheme` is light).
+ *
+ * Replacing an icon: icons are from Lucide (https://lucide.dev/icons/) and every icon is
+ *   <span class="gl-export-icon gl-export-icon--{key}"><svg>…</svg></span>
+ * where {key} is one of title, close, pageSize, customWidth, customHeight, landscape,
+ * portrait, format, vector, vectorLabels, dpi, scalebar, northIcon, fileName, save, adjustArea,
+ * zoomOut, zoomIn. Its size is `--gl-export-icon-size`.
+ * Hide the default Lucide SVG and draw another image with a mask (it keeps the text color):
+ *   .gl-export-icon--pageSize svg { display: none; }
+ *   .gl-export-icon--pageSize {
+ *     background-color: currentColor;
+ *     mask: url('my-icon.svg') center / contain no-repeat;
+ *   }
+ * or hide all icons with `.gl-export-dialog .gl-export-icon { display: none; }`.
+ */
+/* ---------------------------------------------------------------------------
+ * Print button of the map control
+ * ------------------------------------------------------------------------- */
+.gl-export-control {
+  background: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' id='Capa_1' height='512' width='512'  fill='%23333' viewBox='0 0 512 512'%3E%3Cpath d='m422.5 99v-24c0-41.355-33.645-75-75-75h-184c-41.355 0-75 33.645-75 75v24z'/><path d='m118.5 319v122 26 15c0 16.568 13.431 30 30 30h214c16.569 0 30-13.432 30-30v-15-26-122zm177 128h-80c-8.284 0-15-6.716-15-15s6.716-15 15-15h80c8.284 0 15 6.716 15 15s-6.716 15-15 15zm0-64h-80c-8.284 0-15-6.716-15-15s6.716-15 15-15h80c8.284 0 15 6.716 15 15s-6.716 15-15 15z'/><path d='m436.5 129h-361c-41.355 0-75 33.645-75 75v120c0 41.355 33.645 75 75 75h13v-80h-9c-8.284 0-15-6.716-15-15s6.716-15 15-15h24 304 24c8.284 0 15 6.716 15 15s-6.716 15-15 15h-9v80h14c41.355 0 75-33.645 75-75v-120c0-41.355-33.645-75-75-75zm-309 94h-48c-8.284 0-15-6.716-15-15s6.716-15 15-15h48c8.284 0 15 6.716 15 15s-6.716 15-15 15z'/%3E%3C/svg%3E");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 70%;
+}
+
+/* ---------------------------------------------------------------------------
+ * Export rendering
+ * ------------------------------------------------------------------------- */
+/*
+ * Hide high-res map rendering
+*/
+.hidden-map {
+  overflow: hidden;
+  height: 0;
+  width: 0;
+  position: fixed;
+}/*
+ * Theme of the export UI: the `--gl-export-*` custom properties and the base rules every root of
+ * the UI shares. The components keep the rest of their styles in their own `\3c style>`.
+ *
+ * The roots are the dialog, the toolbar shown on the map while the area is adjusted, and
+ * `gl-export-theme`, which applies the theme to the components used on their own (e.g. Storybook).
+ *
+ * Colors come in two layers:
+ *   - the palette: the Tailwind CSS colors in use (`--gl-export-slate-500`, ...), slate as the base
+ *     and indigo as the primary color. Only the roles below refer to them.
+ *   - the roles: named as in shadcn/ui (`background`, `foreground`, `primary`, `muted`, `ring`, ...).
+ *     The components use only these, so the roles are what to change for another look.
+ *
+ * Light or dark: the roles are `light-dark()` pairs, so they follow the `color-scheme` the page
+ * sets (e.g. `:root { color-scheme: dark; }`), which the dialog and the toolbar inherit. A page
+ * without `color-scheme` is light; `:root { color-scheme: light dark; }` follows the OS setting.
+ *
+ * Changing the theme:
+ *   .gl-export-dialog {
+ *     --gl-export-primary: #0f766e;
+ *     --gl-export-radius: 4px;
+ *     --gl-export-font: 'Inter', sans-serif;
+ *   }
+ */
+.gl-export-dialog,
+.gl-export-adjust-bar,
+.gl-export-theme {
+	/* palette: Tailwind CSS colors (https://tailwindcss.com/docs/colors) */
+	--gl-export-white: #ffffff;
+	--gl-export-slate-50: oklch(98.4% 0.003 247.858);
+	--gl-export-slate-100: oklch(96.8% 0.007 247.896);
+	--gl-export-slate-200: oklch(92.9% 0.013 255.508);
+	--gl-export-slate-400: oklch(70.4% 0.04 256.788);
+	--gl-export-slate-500: oklch(55.4% 0.046 257.417);
+	--gl-export-slate-700: oklch(37.2% 0.044 257.287);
+	--gl-export-slate-800: oklch(27.9% 0.041 260.031);
+	--gl-export-slate-900: oklch(20.8% 0.042 265.755);
+	--gl-export-slate-950: oklch(12.9% 0.042 264.695);
+	--gl-export-indigo-400: oklch(67.3% 0.182 276.935);
+	--gl-export-indigo-500: oklch(58.5% 0.233 277.117);
+	--gl-export-indigo-600: oklch(51.1% 0.262 276.966);
+	--gl-export-red-400: oklch(70.4% 0.191 22.216);
+	--gl-export-red-600: oklch(57.7% 0.245 27.325);
+
+	/* roles (shadcn/ui names) */
+	--gl-export-background: light-dark(var(--gl-export-white), var(--gl-export-slate-900));
+	--gl-export-foreground: light-dark(var(--gl-export-slate-900), var(--gl-export-slate-100));
+	--gl-export-primary: light-dark(var(--gl-export-indigo-600), var(--gl-export-indigo-500));
+	--gl-export-primary-foreground: var(--gl-export-white);
+	--gl-export-secondary: light-dark(var(--gl-export-slate-100), var(--gl-export-slate-800));
+	--gl-export-secondary-foreground: light-dark(
+		var(--gl-export-slate-900),
+		var(--gl-export-slate-100)
+	);
+	--gl-export-muted: light-dark(var(--gl-export-slate-50), var(--gl-export-slate-800));
+	--gl-export-muted-foreground: light-dark(var(--gl-export-slate-500), var(--gl-export-slate-400));
+	--gl-export-accent: light-dark(var(--gl-export-slate-100), var(--gl-export-slate-800));
+	--gl-export-accent-foreground: light-dark(var(--gl-export-slate-900), var(--gl-export-slate-100));
+	--gl-export-destructive: light-dark(var(--gl-export-red-600), var(--gl-export-red-400));
+	--gl-export-border: light-dark(var(--gl-export-slate-200), var(--gl-export-slate-700));
+	--gl-export-input: light-dark(var(--gl-export-slate-200), var(--gl-export-slate-700));
+	--gl-export-ring: light-dark(var(--gl-export-indigo-500), var(--gl-export-indigo-400));
+	/* roles of this UI which shadcn/ui does not have */
+	--gl-export-input-background: light-dark(var(--gl-export-white), var(--gl-export-slate-950));
+	--gl-export-preview-background: light-dark(
+		var(--gl-export-slate-100),
+		var(--gl-export-slate-950)
+	);
+	--gl-export-backdrop: light-dark(
+		color-mix(in oklch, var(--gl-export-slate-900) 55%, transparent),
+		color-mix(in oklch, var(--gl-export-slate-950) 70%, transparent)
+	);
+	--gl-export-shadow-color: light-dark(var(--gl-export-slate-900), var(--gl-export-slate-950));
+	--gl-export-shadow: 0 24px 64px
+		color-mix(in oklch, var(--gl-export-shadow-color) 28%, transparent);
+
+	--gl-export-font:
+		system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif;
+	--gl-export-font-size: 14px;
+	--gl-export-radius: 10px;
+	--gl-export-radius-sm: 6px;
+	--gl-export-icon-size: 18px;
+	/* layout */
+	--gl-export-width: 1080px;
+	--gl-export-height: 720px;
+	--gl-export-settings-width: 340px;
+	--gl-export-gap: 16px;
+}
+
+/* the components used on their own follow the OS setting */
+.gl-export-theme {
+	color-scheme: light dark;
+}
+
+.gl-export-dialog *,
+.gl-export-dialog *::before,
+.gl-export-dialog *::after,
+.gl-export-adjust-bar *,
+.gl-export-adjust-bar *::before,
+.gl-export-adjust-bar *::after,
+.gl-export-theme *,
+.gl-export-theme *::before,
+.gl-export-theme *::after {
+	box-sizing: border-box;
+}
+
+/* rows which do not apply to the current settings are hidden */
+.gl-export-dialog [hidden],
+.gl-export-theme [hidden] {
+	display: none !important;
+}
+
+	.gl-export-icon.svelte-134qgxv {
+		display: inline-flex;
+		flex: none;
+		align-items: center;
+		justify-content: center;
+		width: var(--gl-export-icon-size);
+		height: var(--gl-export-icon-size);
+	}
+
+	.gl-export-icon.svelte-134qgxv svg {
+		width: 100%;
+		height: 100%;
+	}
+
+	.gl-export-spinner.svelte-1tfdtmd {
+		display: inline-block;
+		width: 16px;
+		height: 16px;
+		border: 2px solid currentColor;
+		border-bottom-color: transparent;
+		border-radius: 50%;
+		animation: svelte-1tfdtmd-rotation 0.8s linear infinite;
+	}
+
+	@keyframes svelte-1tfdtmd-rotation {
+		0% {
+			transform: rotate(0deg);
+		}
+		100% {
+			transform: rotate(360deg);
+		}
+	}
+
+	.gl-export-btn.svelte-gfs87g {
+		position: relative;
+		display: inline-flex;
+		flex: none;
+		align-items: center;
+		justify-content: center;
+		gap: 8px;
+		height: 36px;
+		padding: 0 14px;
+		border: 1px solid transparent;
+		border-radius: var(--gl-export-radius-sm);
+		font: inherit;
+		font-weight: 500;
+		cursor: pointer;
+		transition:
+			background-color 0.15s,
+			border-color 0.15s,
+			opacity 0.15s;
+	}
+
+	.gl-export-btn.svelte-gfs87g:focus-visible {
+		outline: none;
+		box-shadow: 0 0 0 3px color-mix(in oklch, var(--gl-export-ring) 50%, transparent);
+	}
+
+	.gl-export-btn.svelte-gfs87g:disabled {
+		cursor: progress;
+		opacity: 0.75;
+	}
+
+	.gl-export-btn--primary.svelte-gfs87g {
+		min-width: 120px;
+		background: var(--gl-export-primary);
+		color: var(--gl-export-primary-foreground);
+	}
+
+	.gl-export-btn--primary.svelte-gfs87g:hover:not(:disabled) {
+		background: color-mix(in oklch, var(--gl-export-primary) 90%, transparent);
+	}
+
+	.gl-export-btn--secondary.svelte-gfs87g {
+		border-color: var(--gl-export-input);
+		background: var(--gl-export-secondary);
+		color: var(--gl-export-secondary-foreground);
+	}
+
+	.gl-export-btn--secondary.svelte-gfs87g:hover:not(:disabled) {
+		background: color-mix(in oklch, var(--gl-export-secondary) 80%, transparent);
+	}
+
+	.gl-export-zoom.svelte-1yj5vk2 {
+		display: inline-flex;
+		flex: none;
+		align-items: center;
+		height: 36px;
+		overflow: hidden;
+		border: 1px solid var(--gl-export-input);
+		border-radius: var(--gl-export-radius-sm);
+		background: var(--gl-export-input-background);
+	}
+
+	.gl-export-zoom__button.svelte-1yj5vk2 {
+		--gl-export-icon-size: 16px;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		min-width: 34px;
+		height: 100%;
+		padding: 0;
+		border: none;
+		background: transparent;
+		color: var(--gl-export-foreground);
+		font: inherit;
+		cursor: pointer;
+		transition:
+			background-color 0.15s,
+			color 0.15s;
+	}
+
+	.gl-export-zoom__button.svelte-1yj5vk2:hover:not(:disabled) {
+		background: var(--gl-export-accent);
+	}
+
+	.gl-export-zoom__button.svelte-1yj5vk2:focus-visible {
+		outline: none;
+		box-shadow: inset 0 0 0 2px color-mix(in oklch, var(--gl-export-ring) 50%, transparent);
+	}
+
+	.gl-export-zoom__button.svelte-1yj5vk2:disabled {
+		cursor: default;
+		opacity: 0.35;
+	}
+
+	/* zoom level, click to reset to 100% */
+	.gl-export-zoom__reset.svelte-1yj5vk2 {
+		min-width: 56px;
+		color: var(--gl-export-muted-foreground);
+		font-size: 13px;
+		font-variant-numeric: tabular-nums;
+	}
+
+	.gl-export-dialog__preview.svelte-tfm9pi {
+		display: flex;
+		flex: 1;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		gap: 10px;
+		min-width: 0;
+		padding: var(--gl-export-gap);
+		background: var(--gl-export-preview-background);
+	}
+
+	/* zoom buttons above the preview and adjust area button below it, both centered */
+	.gl-export-dialog__preview.svelte-tfm9pi .gl-export-zoom,
+	.gl-export-dialog__preview.svelte-tfm9pi .gl-export-adjust-area {
+		flex: none;
+		box-shadow: 0 1px 3px color-mix(in oklch, var(--gl-export-shadow-color) 12%, transparent);
+	}
+
+	/*
+	 * The frame keeps the ratio of the page and is as large as the preview pane allows.
+	 * `--gl-export-page-ratio` (width / height) is set from the page size.
+	 */
+	.gl-export-dialog__frame.svelte-tfm9pi {
+		position: relative;
+		flex: 1;
+		width: 100%;
+		min-height: 0;
+		container-type: size;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		/* the preview image is zoomed and dragged inside the frame */
+		overflow: hidden;
+		-webkit-user-select: none;
+		   -moz-user-select: none;
+		        user-select: none;
+	}
+
+	/* zoomed in above 100%: the preview image can be dragged */
+	.gl-export-dialog__frame--zoomed.svelte-tfm9pi {
+		cursor: grab;
+		touch-action: none;
+	}
+
+	.gl-export-dialog__frame--dragging.svelte-tfm9pi {
+		cursor: grabbing;
+	}
+
+	.gl-export-dialog__page.svelte-tfm9pi {
+		position: relative;
+		width: min(100cqw, 100cqh * var(--gl-export-page-ratio, 1.414));
+		aspect-ratio: var(--gl-export-page-ratio, 1.414);
+		flex: none;
+		overflow: hidden;
+		/* zoom and offset of the preview image */
+		transform-origin: center;
+		background: var(--gl-export-background);
+		box-shadow:
+			0 0 0 1px var(--gl-export-border),
+			0 6px 20px color-mix(in oklch, var(--gl-export-shadow-color) 18%, transparent);
+	}
+
+	/* the rendered export image, inserted by the script */
+	.gl-export-dialog__page.svelte-tfm9pi .gl-export-dialog__canvas {
+		display: block;
+		width: 100%;
+		height: 100%;
+		-o-object-fit: contain;
+		   object-fit: contain;
+	}
+
+	/* shown while the preview is rendered */
+	.gl-export-dialog__loading.svelte-tfm9pi {
+		position: absolute;
+		inset: 0;
+		z-index: 1;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background: color-mix(in oklch, var(--gl-export-background) 35%, transparent);
+		color: var(--gl-export-primary);
+		pointer-events: none;
+	}
+
+	.gl-export-dialog__loading.svelte-tfm9pi .gl-export-spinner {
+		width: 28px;
+		height: 28px;
+		border-width: 3px;
+	}
+
+	.gl-export-dialog__preview-error.svelte-tfm9pi {
+		position: absolute;
+		right: 12px;
+		bottom: 12px;
+		left: 12px;
+		z-index: 2;
+		margin: 0;
+		padding: 8px 10px;
+		border-radius: var(--gl-export-radius-sm);
+		background: var(--gl-export-background);
+		color: var(--gl-export-destructive);
+		font-size: 13px;
+		text-align: center;
+	}
+
+	.gl-export-dialog__preview-error[hidden].svelte-tfm9pi {
+		display: none;
+	}
+
+	/* mobile: full screen, preview on top and settings below in one scrolling body */
+	@media (max-width: 767px) {
+		.gl-export-dialog__preview.svelte-tfm9pi {
+			flex: none;
+			padding: 12px;
+		}
+
+		.gl-export-dialog__frame.svelte-tfm9pi {
+			flex: none;
+			height: auto;
+			container-type: inline-size;
+		}
+
+		.gl-export-dialog__page.svelte-tfm9pi {
+			width: min(100cqw, 55dvh * var(--gl-export-page-ratio, 1.414));
+		}
+	}
+
+	.gl-export-color.svelte-1ks8ld3 {
+		flex: none;
+		width: 30px;
+		height: 30px;
+		margin: 0;
+		padding: 5px;
+		border: 1px solid var(--gl-export-input);
+		border-radius: var(--gl-export-radius-sm);
+		background: var(--gl-export-input-background);
+		-webkit-appearance: none;
+		   -moz-appearance: none;
+		        appearance: none;
+		cursor: pointer;
+	}
+
+	.gl-export-color.svelte-1ks8ld3::-webkit-color-swatch-wrapper {
+		padding: 0;
+	}
+
+	.gl-export-color.svelte-1ks8ld3::-webkit-color-swatch {
+		border: 1px solid var(--gl-export-input);
+		border-radius: 3px;
+	}
+
+	.gl-export-color.svelte-1ks8ld3::-moz-color-swatch {
+		border: 1px solid var(--gl-export-input);
+		border-radius: 3px;
+	}
+
+	.gl-export-color.svelte-1ks8ld3:focus-visible {
+		outline: none;
+		box-shadow: 0 0 0 3px color-mix(in oklch, var(--gl-export-ring) 50%, transparent);
+	}
+
+	.gl-export-color.svelte-1ks8ld3:disabled {
+		cursor: default;
+		opacity: 0.5;
+	}
+
+	.gl-export-field.svelte-siru8c {
+		display: flex;
+		flex-direction: column;
+		gap: 6px;
+	}
+
+	.gl-export-field[hidden].svelte-siru8c {
+		display: none;
+	}
+
+	.gl-export-field__label.svelte-siru8c {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+		color: var(--gl-export-foreground);
+		font-weight: 500;
+	}
+
+	.gl-export-field__label.svelte-siru8c .gl-export-icon {
+		color: var(--gl-export-muted-foreground);
+	}
+
+	.gl-export-field__control.svelte-siru8c {
+		display: flex;
+		min-width: 0;
+	}
+
+	/* a switch sits on the same line as its label */
+	.gl-export-field--switch.svelte-siru8c,
+	.gl-export-field--inline.svelte-siru8c {
+		flex-direction: row;
+		align-items: center;
+		justify-content: space-between;
+	}
+
+	/* the label fills the row, so a click between the text and the switch toggles it */
+	.gl-export-field--switch.svelte-siru8c .gl-export-field__label:where(.svelte-siru8c) {
+		flex: 1;
+		align-self: stretch;
+		cursor: pointer;
+	}
+
+	/* the control opens a popup, so only the control itself opens it, not its label */
+	.gl-export-field--inline.svelte-siru8c .gl-export-field__label:where(.svelte-siru8c) {
+		flex: 1;
+	}
+
+	/* value shown at the end of a field label, e.g. the DPI */
+	.gl-export-field__value.svelte-siru8c {
+		margin-left: auto;
+		color: var(--gl-export-primary);
+		font-weight: 600;
+		font-variant-numeric: tabular-nums;
+	}
+
+	.gl-export-field-group.svelte-1pjtszl {
+		--gl-export-icon-size: 16px;
+		display: flex;
+		flex-direction: column;
+		gap: 12px;
+		margin-top: -4px;
+		padding: 12px;
+		border: 1px solid var(--gl-export-border);
+		border-radius: var(--gl-export-radius-sm);
+		background: var(--gl-export-muted);
+		font-size: 13px;
+	}
+
+	.gl-export-field-group[hidden].svelte-1pjtszl {
+		display: none;
+	}
+
+	.gl-export-field-group.svelte-1pjtszl .gl-export-field__label {
+		font-weight: 400;
+	}
+
+	.gl-export-input-group.svelte-ohpf4l {
+		display: flex;
+		width: 100%;
+	}
+
+	.gl-export-input.svelte-ohpf4l {
+		flex: 1;
+		width: 100%;
+		min-width: 0;
+		height: 36px;
+		padding: 0 10px;
+		border: 1px solid var(--gl-export-input);
+		border-radius: var(--gl-export-radius-sm) 0 0 var(--gl-export-radius-sm);
+		background-color: var(--gl-export-input-background);
+		color: var(--gl-export-foreground);
+		font: inherit;
+		transition:
+			border-color 0.15s,
+			box-shadow 0.15s;
+	}
+
+	.gl-export-input.svelte-ohpf4l:hover {
+		border-color: var(--gl-export-muted-foreground);
+	}
+
+	.gl-export-input.svelte-ohpf4l:focus {
+		border-color: var(--gl-export-primary);
+		outline: none;
+		box-shadow: 0 0 0 3px color-mix(in oklch, var(--gl-export-ring) 50%, transparent);
+	}
+
+	.gl-export-input.svelte-ohpf4l:invalid {
+		border-color: var(--gl-export-destructive);
+	}
+
+	.gl-export-input-addon.svelte-ohpf4l {
+		display: inline-flex;
+		flex: none;
+		align-items: center;
+		padding: 0 10px;
+		border: 1px solid var(--gl-export-input);
+		border-left: none;
+		border-radius: 0 var(--gl-export-radius-sm) var(--gl-export-radius-sm) 0;
+		background: var(--gl-export-muted);
+		color: var(--gl-export-muted-foreground);
+		font-size: 13px;
+	}
+
+	.gl-export-north-icon-picker.svelte-3chsf4,
+	.gl-export-north-icon-popup__option.svelte-3chsf4 {
+		display: inline-flex;
+		flex: none;
+		align-items: center;
+		justify-content: center;
+		margin: 0;
+		padding: 0;
+		border: 1px solid var(--gl-export-input);
+		border-radius: var(--gl-export-radius-sm);
+		background: var(--gl-export-input-background);
+		color: var(--gl-export-foreground);
+		cursor: pointer;
+		transition:
+			background-color 0.15s,
+			border-color 0.15s;
+	}
+
+	.gl-export-north-icon-picker.svelte-3chsf4:hover,
+	.gl-export-north-icon-popup__option.svelte-3chsf4:hover {
+		background: var(--gl-export-accent);
+	}
+
+	.gl-export-north-icon-picker.svelte-3chsf4:focus-visible,
+	.gl-export-north-icon-popup__option.svelte-3chsf4:focus-visible {
+		outline: none;
+		box-shadow: 0 0 0 3px color-mix(in oklch, var(--gl-export-ring) 50%, transparent);
+	}
+
+	.gl-export-north-icon-picker.svelte-3chsf4 {
+		width: 30px;
+		height: 30px;
+	}
+
+	.gl-export-north-icon-picker.svelte-3chsf4 img:where(.svelte-3chsf4) {
+		width: 20px;
+		height: 20px;
+	}
+
+	.gl-export-north-icon-popup.svelte-3chsf4 {
+		position: fixed;
+		inset: auto;
+		width: 232px;
+		margin: 0;
+		padding: 12px;
+		border: 1px solid var(--gl-export-border);
+		border-radius: var(--gl-export-radius);
+		background: var(--gl-export-background);
+		box-shadow: var(--gl-export-shadow);
+		color: var(--gl-export-foreground);
+		font-family: var(--gl-export-font);
+		font-size: var(--gl-export-font-size);
+	}
+
+	.gl-export-north-icon-popup__grid.svelte-3chsf4 {
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		gap: 8px;
+	}
+
+	.gl-export-north-icon-popup__option.svelte-3chsf4 {
+		width: auto;
+		aspect-ratio: 1;
+	}
+
+	.gl-export-north-icon-popup__option.svelte-3chsf4 img:where(.svelte-3chsf4) {
+		width: 70%;
+		height: 70%;
+	}
+
+	.gl-export-north-icon-popup__option[aria-pressed='true'].svelte-3chsf4 {
+		border-color: var(--gl-export-primary);
+		box-shadow: 0 0 0 1px var(--gl-export-primary);
+	}
+
+	.gl-export-north-icon-popup__file.svelte-3chsf4 {
+		border-style: dashed;
+		color: var(--gl-export-muted-foreground);
+	}
+
+	.gl-export-north-icon-popup__error.svelte-3chsf4 {
+		margin: 8px 0 0;
+		color: var(--gl-export-destructive);
+		font-size: 12px;
+	}
+
+	.gl-export-segmented.svelte-13ql8i0 {
+		display: flex;
+		width: 100%;
+		padding: 3px;
+		gap: 3px;
+		border: 1px solid var(--gl-export-input);
+		border-radius: var(--gl-export-radius-sm);
+		background: var(--gl-export-muted);
+	}
+
+	.gl-export-segmented__option.svelte-13ql8i0 {
+		--gl-export-icon-size: 16px;
+		position: relative;
+		display: flex;
+		flex: 1;
+		align-items: center;
+		justify-content: center;
+		gap: 6px;
+		height: 30px;
+		border-radius: calc(var(--gl-export-radius-sm) - 2px);
+		color: var(--gl-export-muted-foreground);
+		cursor: pointer;
+		transition:
+			background-color 0.15s,
+			color 0.15s;
+	}
+
+	.gl-export-segmented__option.svelte-13ql8i0:hover {
+		color: var(--gl-export-foreground);
+	}
+
+	.gl-export-segmented__option.svelte-13ql8i0:has(.gl-export-segmented__input:where(.svelte-13ql8i0):checked) {
+		background: var(--gl-export-primary);
+		color: var(--gl-export-primary-foreground);
+		box-shadow: 0 1px 3px color-mix(in oklch, var(--gl-export-shadow-color) 15%, transparent);
+	}
+
+	.gl-export-segmented__option.svelte-13ql8i0:has(.gl-export-segmented__input:where(.svelte-13ql8i0):focus-visible) {
+		box-shadow: 0 0 0 3px color-mix(in oklch, var(--gl-export-ring) 50%, transparent);
+	}
+
+	.gl-export-segmented__input.svelte-13ql8i0 {
+		position: absolute;
+		opacity: 0;
+		pointer-events: none;
+	}
+
+	/* many short options, e.g. the formats */
+	.gl-export-segmented--compact.svelte-13ql8i0 {
+		gap: 2px;
+	}
+
+	.gl-export-segmented--compact.svelte-13ql8i0 .gl-export-segmented__option:where(.svelte-13ql8i0) {
+		/* longer labels, e.g. GEOTIFF, take more room */
+		flex: 1 1 auto;
+		min-width: 0;
+		padding: 0 4px;
+		font-size: 12px;
+		font-weight: 500;
+	}
+
+	.gl-export-segmented--compact.svelte-13ql8i0 .gl-export-segmented__label:where(.svelte-13ql8i0) {
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+
+	.gl-export-select.svelte-1wk9h7g {
+		width: 100%;
+		min-width: 0;
+		height: 36px;
+		padding: 0 32px 0 10px;
+		border: 1px solid var(--gl-export-input);
+		border-radius: var(--gl-export-radius-sm);
+		background-color: var(--gl-export-input-background);
+		background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+		background-position: right 10px center;
+		background-repeat: no-repeat;
+		background-size: 16px;
+		color: var(--gl-export-foreground);
+		font: inherit;
+		-webkit-appearance: none;
+		   -moz-appearance: none;
+		        appearance: none;
+		cursor: pointer;
+		transition:
+			border-color 0.15s,
+			box-shadow 0.15s;
+	}
+
+	.gl-export-select.svelte-1wk9h7g:hover {
+		border-color: var(--gl-export-muted-foreground);
+	}
+
+	.gl-export-select.svelte-1wk9h7g:focus {
+		border-color: var(--gl-export-primary);
+		outline: none;
+		box-shadow: 0 0 0 3px color-mix(in oklch, var(--gl-export-ring) 50%, transparent);
+	}
+
+	.gl-export-select.svelte-1wk9h7g:invalid {
+		border-color: var(--gl-export-destructive);
+	}
+
+	.gl-export-range.svelte-y96z6r {
+		--gl-export-range-thumb: 18px;
+		display: flex;
+		flex-direction: column;
+		gap: 4px;
+		width: 100%;
+	}
+
+	.gl-export-range__input.svelte-y96z6r {
+		--gl-export-range-track: linear-gradient(
+			to right,
+			var(--gl-export-primary) var(--gl-export-range-progress, 0%),
+			var(--gl-export-border) var(--gl-export-range-progress, 0%)
+		);
+		width: 100%;
+		height: 22px;
+		margin: 0;
+		background: transparent;
+		-webkit-appearance: none;
+		   -moz-appearance: none;
+		        appearance: none;
+		cursor: pointer;
+	}
+
+	.gl-export-range__input.svelte-y96z6r::-webkit-slider-runnable-track {
+		height: 4px;
+		border-radius: 2px;
+		background: var(--gl-export-range-track);
+	}
+
+	.gl-export-range__input.svelte-y96z6r::-moz-range-track {
+		height: 4px;
+		border-radius: 2px;
+		background: var(--gl-export-range-track);
+	}
+
+	.gl-export-range__input.svelte-y96z6r::-webkit-slider-thumb {
+		width: var(--gl-export-range-thumb);
+		height: var(--gl-export-range-thumb);
+		margin-top: calc((4px - var(--gl-export-range-thumb)) / 2);
+		border: 2px solid var(--gl-export-primary-foreground);
+		border-radius: 50%;
+		background: var(--gl-export-primary);
+		box-shadow: 0 1px 3px color-mix(in oklch, var(--gl-export-shadow-color) 35%, transparent);
+		-webkit-appearance: none;
+		        appearance: none;
+	}
+
+	.gl-export-range__input.svelte-y96z6r::-moz-range-thumb {
+		box-sizing: border-box;
+		width: var(--gl-export-range-thumb);
+		height: var(--gl-export-range-thumb);
+		border: 2px solid var(--gl-export-primary-foreground);
+		border-radius: 50%;
+		background: var(--gl-export-primary);
+		box-shadow: 0 1px 3px color-mix(in oklch, var(--gl-export-shadow-color) 35%, transparent);
+	}
+
+	.gl-export-range__input.svelte-y96z6r:focus {
+		outline: none;
+	}
+
+	.gl-export-range__input.svelte-y96z6r:focus-visible::-webkit-slider-thumb {
+		box-shadow: 0 0 0 4px color-mix(in oklch, var(--gl-export-ring) 50%, transparent);
+	}
+
+	.gl-export-range__input.svelte-y96z6r:focus-visible::-moz-range-thumb {
+		box-shadow: 0 0 0 4px color-mix(in oklch, var(--gl-export-ring) 50%, transparent);
+	}
+
+	/* every tick sits under the center of the thumb at that position */
+	.gl-export-range__ticks.svelte-y96z6r {
+		display: flex;
+		justify-content: space-between;
+		padding: 0 calc(var(--gl-export-range-thumb) / 2);
+	}
+
+	.gl-export-range__tick.svelte-y96z6r {
+		display: flex;
+		justify-content: center;
+		width: 0;
+		padding: 0;
+		border: none;
+		background: none;
+		color: var(--gl-export-muted-foreground);
+		font: inherit;
+		font-size: 12px;
+		font-variant-numeric: tabular-nums;
+		white-space: nowrap;
+		cursor: pointer;
+	}
+
+	.gl-export-range__tick.svelte-y96z6r:hover {
+		color: var(--gl-export-foreground);
+	}
+
+	.gl-export-range__tick--active.svelte-y96z6r {
+		color: var(--gl-export-primary);
+		font-weight: 600;
+	}
+
+	.gl-export-switch.svelte-1b9vtpw {
+		position: relative;
+		flex: none;
+		width: 38px;
+		height: 22px;
+		margin: 0;
+		border-radius: 11px;
+		background: var(--gl-export-input);
+		-webkit-appearance: none;
+		   -moz-appearance: none;
+		        appearance: none;
+		cursor: pointer;
+		transition: background-color 0.15s;
+	}
+
+	.gl-export-switch.svelte-1b9vtpw::before {
+		position: absolute;
+		top: 3px;
+		left: 3px;
+		width: 16px;
+		height: 16px;
+		border-radius: 50%;
+		background: var(--gl-export-primary-foreground);
+		box-shadow: 0 1px 2px color-mix(in oklch, var(--gl-export-shadow-color) 30%, transparent);
+		content: '';
+		transition: transform 0.15s;
+	}
+
+	.gl-export-switch.svelte-1b9vtpw:checked {
+		background: var(--gl-export-primary);
+	}
+
+	.gl-export-switch.svelte-1b9vtpw:checked::before {
+		transform: translateX(16px);
+	}
+
+	.gl-export-switch.svelte-1b9vtpw:focus-visible {
+		outline: none;
+		box-shadow: 0 0 0 3px color-mix(in oklch, var(--gl-export-ring) 50%, transparent);
+	}
+
+	.gl-export-dialog__settings.svelte-11prfld {
+		display: flex;
+		flex: none;
+		flex-direction: column;
+		gap: 14px;
+		width: var(--gl-export-settings-width);
+		margin: 0;
+		padding: 20px;
+		overflow-y: auto;
+		border-left: 1px solid var(--gl-export-border);
+	}
+
+	/* mobile: full screen, preview on top and settings below in one scrolling body */
+	@media (max-width: 767px) {
+		.gl-export-dialog__settings.svelte-11prfld {
+			width: 100%;
+			overflow-y: visible;
+			border-left: none;
+		}
+	}
+
+	.gl-export-dialog.svelte-1qpzdt2 {
+		box-sizing: border-box;
+		width: min(var(--gl-export-width), calc(100vw - 32px));
+		height: min(var(--gl-export-height), calc(100dvh - 32px));
+		max-width: none;
+		max-height: none;
+		margin: auto;
+		padding: 0;
+		overflow: hidden;
+		border: none;
+		border-radius: var(--gl-export-radius);
+		background: var(--gl-export-background);
+		color: var(--gl-export-foreground);
+		box-shadow: var(--gl-export-shadow);
+		font-family: var(--gl-export-font);
+		font-size: var(--gl-export-font-size);
+		line-height: 1.4;
+	}
+
+	.gl-export-dialog.svelte-1qpzdt2::backdrop {
+		background: var(--gl-export-backdrop);
+		backdrop-filter: blur(2px);
+	}
+
+	.gl-export-dialog[open].svelte-1qpzdt2 {
+		animation: svelte-1qpzdt2-dialog-in 0.18s ease-out;
+	}
+
+	@keyframes svelte-1qpzdt2-dialog-in {
+		from {
+			opacity: 0;
+			transform: translateY(8px) scale(0.98);
+		}
+		to {
+			opacity: 1;
+			transform: none;
+		}
+	}
+
+	.gl-export-dialog__container.svelte-1qpzdt2 {
+		display: flex;
+		flex-direction: column;
+		width: 100%;
+		height: 100%;
+	}
+
+	/* header */
+
+	.gl-export-dialog__header.svelte-1qpzdt2 {
+		display: flex;
+		flex: none;
+		align-items: center;
+		justify-content: space-between;
+		gap: 12px;
+		padding: 12px 12px 12px 20px;
+		border-bottom: 1px solid var(--gl-export-border);
+	}
+
+	.gl-export-dialog__title.svelte-1qpzdt2 {
+		--gl-export-icon-size: 20px;
+		display: flex;
+		align-items: center;
+		gap: 10px;
+		margin: 0;
+		font-size: 16px;
+		font-weight: 600;
+	}
+
+	.gl-export-dialog__title.svelte-1qpzdt2 .gl-export-icon {
+		color: var(--gl-export-primary);
+	}
+
+	.gl-export-dialog__close.svelte-1qpzdt2 {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: 36px;
+		height: 36px;
+		padding: 0;
+		border: none;
+		border-radius: 50%;
+		background: transparent;
+		color: var(--gl-export-muted-foreground);
+		cursor: pointer;
+		transition:
+			background-color 0.15s,
+			color 0.15s;
+	}
+
+	.gl-export-dialog__close.svelte-1qpzdt2:hover {
+		background: var(--gl-export-accent);
+		color: var(--gl-export-foreground);
+	}
+
+	.gl-export-dialog__close.svelte-1qpzdt2:focus-visible {
+		outline: none;
+		box-shadow: 0 0 0 3px color-mix(in oklch, var(--gl-export-ring) 50%, transparent);
+	}
+
+	/* the dialog cannot be closed while the map is being exported */
+	.gl-export-dialog--saving.svelte-1qpzdt2 .gl-export-dialog__close:where(.svelte-1qpzdt2) {
+		visibility: hidden;
+	}
+
+	/* body: preview on the left, settings on the right */
+
+	.gl-export-dialog__body.svelte-1qpzdt2 {
+		display: flex;
+		flex: 1;
+		min-height: 0;
+	}
+
+	/* footer */
+
+	.gl-export-dialog__footer.svelte-1qpzdt2 {
+		display: flex;
+		flex: none;
+		align-items: center;
+		justify-content: flex-end;
+		gap: 12px;
+		padding: 12px 20px;
+		border-top: 1px solid var(--gl-export-border);
+	}
+
+	.gl-export-dialog__error.svelte-1qpzdt2 {
+		flex: 1;
+		margin: 0;
+		color: var(--gl-export-destructive);
+		font-size: 13px;
+	}
+
+	/* mobile: full screen, preview on top and settings below in one scrolling body */
+	@media (max-width: 767px) {
+		.gl-export-dialog.svelte-1qpzdt2 {
+			width: 100vw;
+			height: 100dvh;
+			border-radius: 0;
+		}
+
+		.gl-export-dialog__body.svelte-1qpzdt2 {
+			flex-direction: column;
+			overflow-y: auto;
+			-webkit-overflow-scrolling: touch;
+			overscroll-behavior: contain;
+		}
+	}
+
+	.gl-export-adjust-bar.svelte-fktng0 {
+		position: absolute;
+		bottom: 16px;
+		left: 50%;
+		z-index: 10;
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: center;
+		gap: 12px;
+		box-sizing: border-box;
+		width: -moz-max-content;
+		width: max-content;
+		max-width: calc(100% - 32px);
+		padding: 10px 10px 10px 16px;
+		border-radius: 999px;
+		background: var(--gl-export-background);
+		color: var(--gl-export-foreground);
+		box-shadow: var(--gl-export-shadow);
+		font-family: var(--gl-export-font);
+		font-size: var(--gl-export-font-size);
+		line-height: 1.4;
+		transform: translateX(-50%);
+		animation: svelte-fktng0-fade-in 0.18s ease-out;
+	}
+
+	@keyframes svelte-fktng0-fade-in {
+		from {
+			opacity: 0;
+		}
+		to {
+			opacity: 1;
+		}
+	}
+
+	.gl-export-adjust-bar__hint.svelte-fktng0 {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+	}
+
+	.gl-export-adjust-bar__actions.svelte-fktng0 {
+		display: flex;
+		gap: 8px;
+	}
+
+	.gl-export-adjust-bar__actions.svelte-fktng0 .gl-export-btn--primary {
+		min-width: 96px;
+	}
+
+	@media (max-width: 767px) {
+		.gl-export-adjust-bar.svelte-fktng0 {
+			border-radius: var(--gl-export-radius);
+			padding: 12px;
+		}
+	}
+/*$vite$:1*/

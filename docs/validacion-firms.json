@@ -1,0 +1,154 @@
+{
+  "verified_at": "2026-10-08T13:56:21.940780-06:00",
+  "runtime": {
+    "python": "3.12.15",
+    "node": "v22.23.2",
+    "shapely": "2.1.2",
+    "pyarrow": "23.0.1",
+    "pyyaml": "6.0.3"
+  },
+  "unit_and_http_tests": {
+    "passed": 18,
+    "failed": 0,
+    "command": ".conda-env/bin/python -m unittest discover -s tests -v"
+  },
+  "browser_test": {
+    "passed": true,
+    "tool": "playwright@1.58.2",
+    "command": ".conda-env/bin/node tests/check_firms_ui.cjs",
+    "checks": [
+      "Botón de sincronización",
+      "Publicación de tres detecciones simuladas",
+      "Fecha final actualizada",
+      "Estadísticas: 30.204 detecciones filtradas",
+      "CSV descargado contiene detecciones FIRMS",
+      "Sin errores JavaScript"
+    ],
+    "screenshot": "runtime/firms-sync-qa.png",
+    "data_source": "Datos simulados; almacenamiento temporal eliminado al terminar"
+  },
+  "authenticated_nasa_request": {
+    "performed": true,
+    "first_job": {
+      "id": "dea0ed0f032044e298bfd8cc6bb2daa1",
+      "kind": "sync",
+      "status": "completed",
+      "created_at": "2026-10-08T19:48:56.375577+00:00",
+      "started_at": "2026-10-08T19:48:56.376880+00:00",
+      "stage": "Integrando registros y preparando el catálogo",
+      "finished_at": "2026-10-08T19:49:05.456192+00:00",
+      "result": {
+        "job_id": "dea0ed0f032044e298bfd8cc6bb2daa1",
+        "received": 6,
+        "rejected": 0,
+        "products": [
+          "VIIRS_NOAA20_NRT",
+          "VIIRS_NOAA21_NRT",
+          "VIIRS_SNPP_NRT"
+        ],
+        "start": "2026-10-06",
+        "end": "2026-10-08",
+        "bbox": [
+          -91.443759,
+          15.844419,
+          -89.139843,
+          17.819454
+        ],
+        "downloads": [
+          {
+            "product": "VIIRS_NOAA20_NRT",
+            "rows": 2,
+            "sha256": "fce6a44073d88457b49415ec188915e8091c086bc69c20edab0a31a285ca8c95"
+          },
+          {
+            "product": "VIIRS_NOAA21_NRT",
+            "rows": 4,
+            "sha256": "49cf39b797c4f27e412501519562354414a94aa4dcf7f537518578a3ec0033b8"
+          },
+          {
+            "product": "VIIRS_SNPP_NRT",
+            "rows": 0,
+            "sha256": "2b11a44667d05367ecf77651b95fd3d34c545c7ec154856094b91245e41ae697"
+          }
+        ],
+        "at": "2026-10-08T19:48:58.399626+00:00",
+        "added": 1,
+        "duplicates": 5,
+        "total_points": 66583,
+        "dataset": "v-8212e0d7e5502ecc",
+        "published": true
+      }
+    },
+    "repeat_job": {
+      "id": "d27e8f024dfa40f89d1c61c56ea6f72a",
+      "kind": "sync",
+      "status": "completed",
+      "created_at": "2026-10-08T19:53:54.483582+00:00",
+      "started_at": "2026-10-08T19:53:54.484917+00:00",
+      "stage": "Integrando registros y preparando el catálogo",
+      "finished_at": "2026-10-08T19:54:00.355684+00:00",
+      "result": {
+        "job_id": "d27e8f024dfa40f89d1c61c56ea6f72a",
+        "received": 6,
+        "rejected": 0,
+        "products": [
+          "VIIRS_NOAA20_NRT",
+          "VIIRS_NOAA21_NRT",
+          "VIIRS_SNPP_NRT"
+        ],
+        "start": "2026-10-06",
+        "end": "2026-10-08",
+        "bbox": [
+          -91.443759,
+          15.844419,
+          -89.139843,
+          17.819454
+        ],
+        "downloads": [
+          {
+            "product": "VIIRS_NOAA20_NRT",
+            "rows": 2,
+            "sha256": "fce6a44073d88457b49415ec188915e8091c086bc69c20edab0a31a285ca8c95"
+          },
+          {
+            "product": "VIIRS_NOAA21_NRT",
+            "rows": 4,
+            "sha256": "49cf39b797c4f27e412501519562354414a94aa4dcf7f537518578a3ec0033b8"
+          },
+          {
+            "product": "VIIRS_SNPP_NRT",
+            "rows": 0,
+            "sha256": "2b11a44667d05367ecf77651b95fd3d34c545c7ec154856094b91245e41ae697"
+          }
+        ],
+        "at": "2026-10-08T19:53:56.328468+00:00",
+        "added": 0,
+        "duplicates": 6,
+        "total_points": 66583,
+        "dataset": "v-bdc3c88f104d4f69",
+        "published": true
+      }
+    },
+    "browser_verified": true,
+    "csv_export": "runtime/firms-live-export.csv",
+    "screenshot": "runtime/firms-live-registros.png"
+  },
+  "original_files": {
+    "verified": 1127,
+    "modified": 0
+  },
+  "current_local_url": "http://localhost:8090",
+  "implementation_hashes": {
+    "scripts/firms_backend.py": "8b9ddfe8ef822e6d56d1ff91172d4798d1f6ed0f37669b8f16cb643c65bd8b26",
+    "scripts/start.py": "c6e5b3f5af44c97ad516b29a4fae0f47819ede5ddf95396a0fab970eb31217d7",
+    "serve.js": "ffdd760754be1bdddbc496710ca57ce35263f37813fb2caf1b46c2e499848ca1",
+    "config.yaml": "240bddb93b952c4f18fb802c2591115df34bed158213252506c3b82166f862b1",
+    "environment.yml": "0b38728be7c9d96f2f2f82637515572da79fcc13cd26e8299b7d9faaa6c105c5",
+    "environment-linux-64.lock.txt": "63dbc58cb726fe3d36cc178b17b91c2f117f20cbf40e9c7882e447fba9a0af86"
+  },
+  "query_area": {
+    "id": "region-firms-area",
+    "name": "Área de consulta FIRMS",
+    "purpose": "Consultar detecciones dentro del rectángulo FIRMS y fuera de las jurisdicciones originales."
+  }
+}

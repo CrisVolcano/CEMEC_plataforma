@@ -1,0 +1,91 @@
+{
+  "date": "2026-10-26",
+  "status": "beta",
+  "map_engine": "MapLibre GL JS 5.24.0",
+  "exporter": "@watergis/maplibre-gl-export@6.0.0",
+  "tests": {
+    "python_tests_passed": 45,
+    "geopdf_ui": "passed",
+    "redesign_ui": "passed",
+    "original_files_integrity": 1127,
+    "cases": [
+      "A4 horizontal 150 DPI",
+      "Carta vertical 200 DPI",
+      "Selección VIIRS por municipio",
+      "Imagen Sentinel-2 simulada",
+      "Esquinas GDAL coinciden con metadatos, tolerancia 0.00001 grados",
+      "Selección vacía",
+      "Fallo de carga y reintento",
+      "Metadatos y conteos",
+      "Liberación de mapa temporal",
+      "Vista móvil",
+      "Reporte existente",
+      "Escala local calculada con coordenadas del marco",
+      "Descriptor de densidad de píxeles restaurado tras exportar"
+    ]
+  },
+  "samples": [
+    {
+      "paper": "A4",
+      "orientation": "landscape",
+      "dpi": 150,
+      "selection_count": 12306,
+      "in_frame_count": 12306,
+      "pdf_sha256": "d434f44f490c0cc2724f885abb68c27f8adc6ab7f5a0a9ba5567a5b4e918217d",
+      "pixel_size": [
+        1754,
+        1240
+      ],
+      "georeference_epsg": 3857,
+      "scale_bar": {
+        "distance_m": 20000,
+        "latitude": 16.796061951686923,
+        "method": "great-circle distance at scale bar latitude"
+      },
+      "attributions": [
+        "CEMEC · geoBoundaries CC BY 3.0 IGO"
+      ]
+    },
+    {
+      "paper": "LETTER",
+      "orientation": "portrait",
+      "dpi": 200,
+      "selection_count": 12306,
+      "in_frame_count": 12306,
+      "pdf_sha256": "486ab4fbef1b8c93d90ab829b1625bee339a66419ce40e116c9b64665cec6cd5",
+      "pixel_size": [
+        1700,
+        2200
+      ],
+      "georeference_epsg": 3857,
+      "scale_bar": {
+        "distance_m": 20000,
+        "latitude": 15.49528123641889,
+        "method": "great-circle distance at scale bar latitude"
+      },
+      "attributions": [
+        "CEMEC · geoBoundaries CC BY 3.0 IGO",
+        "Copernicus Sentinel data · CDSE"
+      ]
+    }
+  ],
+  "source_sha256": {
+    "ui/geopdf.js": "d0a704eba4ebfe63d1bc6ddd000e37910e94a829e94b9382f0852b1c79f5f7a1",
+    "ui/cemec-view.js": "2061e5227b4ea8918f4e7f3ae046a715d0a8707bcbc61f5bf8591371ba89721a",
+    "ui/cemec-ui.css": "09969f967cfe51604b55ee8a79267abd31c206c4df57aac0a71914bd62321cd4",
+    "scripts/redesign.cjs": "ef21066bd4ae82ff45361325973219f80a85daf3f435a24c2636398377fff974",
+    "serve.js": "60c7c5f5d8336affd28ac13c23cba827a3fef50f4019b6c3e86c9ff96e16dbdf",
+    "tests/check_geopdf_ui.cjs": "8c27e3727da9998533cf9ccc7fd2d034ba69e4504b706cc98d4ffe2a74669047",
+    "tests/test_server.py": "7a9f9dad2c2d1aad18505a82a53a3e376ad67521a620ff7b21d524cc86dd999c"
+  },
+  "backup": "respaldos/antes-geopdf_20261026_101145/codigo.tar.gz",
+  "live_url": "http://localhost:8090",
+  "limits": [
+    "Salida raster; no capas vectoriales editables",
+    "EPSG:3857; no proyección GTM personalizada",
+    "Sin rótulos HTML municipales",
+    "No se verificó manualmente QGIS, ArcGIS ni Avenza",
+    "Pruebas de imágenes con proveedor simulado, sin consumo CDSE",
+    "No se iniciaron sincronizaciones ni procesamiento externo desde esta tarea"
+  ]
+}

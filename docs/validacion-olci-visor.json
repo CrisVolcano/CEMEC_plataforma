@@ -1,0 +1,22 @@
+{
+  "status": "implementado y verificado",
+  "verified_at_utc": "2026-10-13T19:09:42.282155+00:00",
+  "localhost": "http://localhost:8090",
+  "unit_http_tests_passed": 30,
+  "olci_ui": "passed",
+  "redesign_regression_ui": "passed",
+  "real_image_reference_utc": "2026-10-13T16:05:12Z",
+  "real_historical_products": 6,
+  "live_page_errors": [],
+  "detections_active_sha256": "8320b636189144589b89160fe94966f52855f9ae8775e6d508b2c5e481c94007",
+  "detections_preserved": true,
+  "backup": {
+    "archive": "respaldos/antes-olci_20261013_125730/codigo.tar.gz"
+  },
+  "evidence": "runtime/olci-qa/live-verification.json",
+  "limitations": [
+    "La imagen puede tener nubes o cobertura parcial",
+    "La referencia temporal puede combinar segmentos",
+    "PDF y mapas de comparación conservan mapas de detecciones sin RGB OLCI"
+  ]
+}

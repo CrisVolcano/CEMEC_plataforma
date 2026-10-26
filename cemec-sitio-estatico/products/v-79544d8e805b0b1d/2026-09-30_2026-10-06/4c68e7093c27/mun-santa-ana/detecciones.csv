@@ -1,0 +1,6 @@
+﻿id,lat,lon,date,time,satellite,instrument,confidence,frp,source
+5f25dc167c9846ecf960,16.74553,-89.43754,2026-09-30,1821,NOAA-21,VIIRS,n,5.83,INAB · puntos de calor
+985062647a98d32431a5,16.74445,-89.43902,2026-09-30,1821,NOAA-21,VIIRS,n,4.9,INAB · puntos de calor
+5d5af00ddc802757c247,16.84683,-89.74879,2026-09-30,1917,NOAA-20,VIIRS,n,2.54,INAB · puntos de calor
+c70dde3d09c5548485c9,16.74199,-89.43762,2026-09-30,1917,NOAA-20,VIIRS,n,3.79,INAB · puntos de calor
+b521dab7c3e1c7ac71a2,16.83786,-89.65181,2026-10-02,1923,NOAA-21,VIIRS,n,4.13,INAB · puntos de calor

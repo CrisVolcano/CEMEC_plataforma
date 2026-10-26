@@ -1,0 +1,66 @@
+{
+  "date": "2026-10-19",
+  "edition": "1.1",
+  "artifacts": {
+    "manual-instalacion.pdf": {
+      "bytes": 142429,
+      "sha256": "d8734e63cceb04daa63ee7b070e6422fa2e5f05cd981a3db80c3044f5763b6fc",
+      "pages": 19,
+      "active_links": 26
+    },
+    "manual-instalacion.docx": {
+      "bytes": 55649,
+      "sha256": "acaf40c71feb9b0f1f01f0aa32499675ffebb4018d5d0aca43d0a98f1bd7a85e"
+    },
+    "manual-instalacion.md": {
+      "bytes": 38507,
+      "sha256": "c5916203e10e70014ec937f78d374d62c21d35c1287bb8a5a9b34ad8d555736e"
+    },
+    "manual-uso.pdf": {
+      "bytes": 215583,
+      "sha256": "c0ae50eb2eedf9f70754bb9349432fcb63a0148fd4b50cd77e7b980238157d05",
+      "pages": 22,
+      "active_links": 27
+    },
+    "manual-uso.docx": {
+      "bytes": 305488,
+      "sha256": "46fc83479f09fba63349b8db53fa993906c07749d8ecde7bbc361eaf233f012d"
+    },
+    "manual-uso.md": {
+      "bytes": 44052,
+      "sha256": "247a6eb38f2456c85a6b4db4fdb9756adb60b3cb458bcf8034938d9b7105d8d8"
+    }
+  },
+  "content": {
+    "installation_chapters": 14,
+    "usage_chapters": 19,
+    "real_screenshots": 3,
+    "credentials_are_placeholders": true,
+    "official_windows_and_provider_sources_checked": true
+  },
+  "checks": {
+    "word_rendered_with_libreoffice": true,
+    "all_41_pages_visually_reviewed": true,
+    "final_pdf_raster_identical_to_reviewed_word_render": true,
+    "no_out_of_bounds_text": true,
+    "bash_blocks_syntax_checked": true,
+    "known_local_secrets_absent_from_text": true,
+    "previous_manual_archive_checksum_verified": true
+  },
+  "scope": {
+    "windows_execution_tested": false,
+    "windows_route": "Acceso por navegador, preparación Windows nativo y WSL2 opcional",
+    "native_windows_adaptation_pending": true,
+    "cmd_and_powershell_examples_executed": false,
+    "application_dependencies_unchanged": true,
+    "no_sync_or_image_processing_initiated_by_document_task": true
+  },
+  "miniforge_example": {
+    "version": "26.7.2-0",
+    "official_checksum": "281b0ac7d550802efc81af633225a5e6116d29ae72f3ab4eae7168c3931a4c05"
+  },
+  "builders": [
+    "../../scripts/build_manuals.py",
+    "../../scripts/finalize_manual_pdfs.py"
+  ]
+}

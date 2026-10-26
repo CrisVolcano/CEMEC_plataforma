@@ -1,0 +1,106 @@
+{
+  "verified_at": "2026-10-12T23:15:55.339378+00:00",
+  "unit_and_http_tests": {
+    "passed": 24,
+    "command": ".conda-env/bin/python -m unittest discover -s tests -p test_*.py"
+  },
+  "eumetsat_ui": {
+    "passed": true,
+    "synthetic_products": 17,
+    "isolated_storage": true,
+    "checks": [
+      "sync button",
+      "all products",
+      "map",
+      "SLSTR and source filters",
+      "CSV UTC and raw quality fields"
+    ]
+  },
+  "firms_ui_regression": {
+    "passed": true
+  },
+  "original_integrity": {
+    "passed": true,
+    "files": 1127
+  },
+  "real_existing_csv_format": {
+    "files": 9,
+    "detections": 36,
+    "source": "CSV previamente descargados del notebook, sin publicación en el visor"
+  },
+  "authenticated_eumetsat": {
+    "oauth": "verified",
+    "search": "verified",
+    "download": "verified",
+    "job_id": "d6db2fc8b9b04076881eedc09e44a13a",
+    "job_status": "completed",
+    "at": "2026-10-12T23:37:26.003682+00:00",
+    "products_found": 9,
+    "products_processed": 9,
+    "received": 72,
+    "outside_bbox": 72,
+    "outside_period": 0,
+    "in_area": 0,
+    "added": 0,
+    "complete": true
+  },
+  "dependencies": {
+    "eumdac": "3.1.1",
+    "environment": "dedicated project Conda"
+  },
+  "sha256": {
+    "scripts/eumetsat_client.py": "a332c4ac11c149f4cadf07fd8ad8ac1a764aea5e7e35cfd40d080e85db2e3a51",
+    "scripts/firms_backend.py": "8c159a8c753e3aa6097a8c475d1ab8c1b8f43ea9fcdd74d2c397ab2e803647c6",
+    "scripts/frontend_patch.cjs": "e111a75f813b35175ceb44a19c72990fe0713fa24a5ff741df891135236b299e",
+    "serve.js": "a517e57aead72c52ab5823ba2e41181abe7fa3763ff9ea2cb13327074b4563c7",
+    "scripts/start.py": "1f638da82065a1504e8d848e86352d346065a34f72b251d1d6ef1aa5a46bc719",
+    "config.yaml": "8634359126dd2853e4b05ebc6e82f5dd83de4717a823829774e7c3bee0b84ea3",
+    "environment.yml": "7d0bf1c00f8497e26b8dd043ab1a8c6d5082f3de2edf0d2aa5b86c87838ca9d8",
+    "environment-linux-64.lock.txt": "198e4cece2979acd6057b06e2ce4aa284fb91017d6c83c06e925461fdaff3cf0"
+  },
+  "real_ui": {
+    "passed": true,
+    "url": "http://localhost:8090",
+    "checks": [
+      "configured credentials flag",
+      "sync button enabled",
+      "no product limit",
+      "license failure visible",
+      "no JavaScript errors"
+    ]
+  },
+  "direct_notebook_flow_recheck": {
+    "date": "2026-10-12",
+    "credentials": "Mismas credenciales según confirmación del usuario; valores no registrados",
+    "token_valid": true,
+    "product": "Uno de los productos del 2026-10-08 previamente descargados en el notebook",
+    "standard_csv_entries": 1,
+    "download_http_status": 403,
+    "service_diagnosis": "Copernicus license required to access this collection",
+    "method": "eumdac.AccessToken → DataStore.get_product → product.open(entry), sin el conector del visor"
+  },
+  "portal_evidence": {
+    "copernicus_status": "active",
+    "start_date": "2026-10-08",
+    "end_date": null,
+    "source": "Captura aportada por el usuario"
+  },
+  "account_check": {
+    "endpoint": "https://api.eumetsat.int/epcs/user_info",
+    "http_status": 200,
+    "username": "crisvolcano",
+    "portal_match": "Confirmado por el usuario"
+  },
+  "download_routes": {
+    "metadata": 200,
+    "csv_entry": 403,
+    "whole_product": 403,
+    "token_renewal": "Token invalidado y obtenido de nuevo; continúa HTTP 403"
+  },
+  "diagnosis": "El rechazo inicial cesó después del acceso y descarga desde el Data Store realizados por el usuario. La sincronización completa por API se verificó correctamente; no se ha confirmado la causa interna del rechazo previo.",
+  "empty_sync_ui": {
+    "passed": true,
+    "dates": "Consulta válida aunque date_max del catálogo sea anterior al inicio de la consulta",
+    "historical_data_preserved": true
+  }
+}

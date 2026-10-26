@@ -1,0 +1,7 @@
+{
+  "source": "Descarga manual del Data Store aportada por el usuario",
+  "file": "origen/eumetsat/S3A_SL_2_FRP____20261012T153205_20261012T153505_20261012T171408_0180_145_068______MAR_O_NR_003.SEN3.zip",
+  "sha256": "2f774c0140b175c246881b98e6ca4e01e3de3d61a306be3f2b04f91f31cf0c86",
+  "download_date": "2026-10-12",
+  "standard_mwir_detections": 0
+}

@@ -1,0 +1,6 @@
+/data/catalog.json
+  Cache-Control: no-cache
+/data/v-*/*
+  Cache-Control: public, max-age=31536000, immutable
+/products/catalog.json
+  Cache-Control: no-cache

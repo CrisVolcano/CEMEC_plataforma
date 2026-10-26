@@ -1,0 +1,12 @@
+{
+  "package": "@watergis/maplibre-gl-export",
+  "version": "6.0.0",
+  "source": "https://registry.npmjs.org/@watergis/maplibre-gl-export/-/maplibre-gl-export-6.0.0.tgz",
+  "npm_integrity": "sha512-FCDTjDgv+C3sqw1BukSZwhv5DZBCgH0AuzwI/F+8h4s4PwdqCf3zhHSkosFgZjA+3UkipXgXx4fmMR2x6Bjoeg==",
+  "license": "MIT",
+  "files": {
+    "LICENSE": "1e8c24d61a9a781c7f8342f8d07adc32aa324aa8d83def5d527787e657de991e",
+    "maplibre-gl-export.css": "477a3e373ca93de1e0d87d60127ada475c111af486532d6bb6cf7a1aab801bb0",
+    "maplibre-gl-export.umd.js": "922fc34547dc86600cc0142c060d5588d380d0a7b46973a3b2e3175962bad209"
+  }
+}
